@@ -1,5 +1,11 @@
 // =====================================================
-// Dialogue Editor - app.js (working pan/zoom + edges)
+// Dialogue Editor - app.js (FULL WORKING)
+// - Pan/zoom
+// - Node drag
+// - Connect ports: click/click + drag/release
+// - Dotted preview while dragging
+// - Select node + edge (blue)
+// - Delete selected (node/edge) without breaking graph
 // =====================================================
 
 const canvas = document.getElementById("canvas");
@@ -7,7 +13,7 @@ const edgesSvg = document.getElementById("edges");
 const viewport = document.getElementById("viewport");
 const importFile = document.getElementById("importFile");
 
-// Ensure SVG can receive pointer input for edge selection
+// SVG must receive pointer input for edge selection
 edgesSvg.style.pointerEvents = "auto";
 
 // --- enums (keep yours) ---
@@ -22,17 +28,18 @@ const purposeEnums = ["None", "Poet", "Lover", "Warrior", "Altruist", "Nihilist"
 
 // --- graph state ---
 let nodes = [];
-let edges = [];
+let edges = []; // { id, from:{nodeId,kind,direction,index}, to:{...} }
 let nextId = 1;
 
 // selection
 let selectedNodeId = null;
 let selectedEdgeId = null;
 
-// connection interaction
-let activePort = null;          // click-click mode
-let drag = null;                // drag mode { fromPort, tempPath }
-let lastPointer = { x: 0, y: 0 };
+// click-click arming
+let armedPort = null; // { nodeId, nodeType, kind, direction, el }
+
+// pointer-based port interaction (drag OR tap)
+let portPointer = null; // { pointerId, fromPort, moved, startX, startY, tempPath }
 
 // pan/zoom
 let pan = { x: 0, y: 0 };
@@ -40,15 +47,15 @@ let zoom = 1;
 
 applyTransform();
 syncSvgSize();
+redrawEdges();
 
-// Resize SVG to viewport on resize
 window.addEventListener("resize", () => {
     syncSvgSize();
     redrawEdges();
 });
 
 // =====================================================
-// Node creation
+// Public API (called from HTML buttons)
 // =====================================================
 window.createNode = function (type) {
     const node = {
@@ -64,6 +71,71 @@ window.createNode = function (type) {
     redrawEdges();
 };
 
+window.deleteSelected = function () {
+    // Delete edge first
+    if (selectedEdgeId) {
+        edges = edges.filter(e => e.id !== selectedEdgeId);
+        selectedEdgeId = null;
+        redrawEdges();
+        return;
+    }
+
+    // Delete node
+    if (selectedNodeId) {
+        const id = selectedNodeId;
+
+        // remove node model
+        nodes = nodes.filter(n => n.id !== id);
+
+        // remove attached edges
+        edges = edges.filter(e => e.from.nodeId !== id && e.to.nodeId !== id);
+
+        // remove DOM
+        const el = canvas.querySelector(`.node[data-id="${id}"]`);
+        if (el) el.remove();
+
+        selectedNodeId = null;
+        redrawEdges();
+    }
+};
+
+window.exportJSON = function () {
+    const data = {
+        version: 1,
+        nodes,
+        edges
+    };
+
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "dialogue.json";
+    a.click();
+};
+
+importFile.onchange = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = () => {
+        try {
+            const data = JSON.parse(reader.result);
+            loadGraph(data);
+        } catch (err) {
+            console.error(err);
+            alert("Import failed: invalid JSON.");
+        }
+    };
+    reader.readAsText(file);
+
+    // allow importing the same file again
+    importFile.value = "";
+};
+
+// =====================================================
+// Data defaults
+// =====================================================
 function defaultData(type) {
     if (type === "dialogue") {
         return { speaker: "NPC", text: "", stableText: "", fragmentedText: "", ghostlyText: "" };
@@ -87,8 +159,8 @@ function renderNode(node) {
     el.style.top = node.y + "px";
     el.dataset.id = node.id;
 
-    // click on node selects it (but don't steal from port clicks)
     el.addEventListener("pointerdown", (e) => {
+        // ignore if pointerdown started on a port (port handler will manage)
         if (e.target.classList.contains("port")) return;
         selectNode(node.id);
         e.stopPropagation();
@@ -100,15 +172,16 @@ function renderNode(node) {
 
     makeDraggable(el, header, node);
 
-    // ports + fields
     if (node.type === "dialogue") {
         el.appendChild(createPort(node, "flow", "in", 30));
         el.appendChild(createPort(node, "flow", "out", 30));
 
-        el.appendChild(makeSelect("Speaker", ["NPC", "Player", "Narrator"], node.data, "speaker", () => {
-            renderDialogueFields(el, node);
-            redrawEdges();
-        }));
+        el.appendChild(
+            makeSelect("Speaker", ["NPC", "Player", "Narrator"], node.data, "speaker", () => {
+                renderDialogueFields(el, node);
+                redrawEdges();
+            })
+        );
 
         renderDialogueFields(el, node);
     }
@@ -152,7 +225,9 @@ function renderDialogueFields(el, node) {
 }
 
 // =====================================================
-// Ports + connecting
+// Ports + connecting (unified pointer handling)
+// - Tap w/o moving = click-click mode
+// - Move a bit = drag mode with dotted preview
 // =====================================================
 function createPort(node, kind, direction, y) {
     const p = document.createElement("div");
@@ -161,155 +236,190 @@ function createPort(node, kind, direction, y) {
 
     p.dataset.nodeId = node.id;
     p.dataset.nodeType = node.type;
-    p.dataset.kind = kind;           // "flow", "social", ...
-    p.dataset.direction = direction; // "in" or "out"
+    p.dataset.kind = kind;            // flow/social/gender/...
+    p.dataset.direction = direction;  // in/out
 
-    // click-click support
-    p.addEventListener("click", (e) => {
-        e.stopPropagation();
-        onPortClick(p);
-    });
-
-    // drag support
     p.addEventListener("pointerdown", (e) => {
         e.stopPropagation();
-        startPortDrag(p, e);
+        beginPortPointer(p, e);
     });
 
     return p;
 }
 
-function onPortClick(portEl) {
-    const port = readPort(portEl);
-
-    // If dragging is active, ignore click connect
-    if (drag) return;
-
-    if (!activePort) {
-        activePort = port;
-        setPortActiveVisual(activePort.el, true);
-        return;
-    }
-
-    // If clicking same port: cancel
-    if (activePort.el === port.el) {
-        clearActivePort();
-        return;
-    }
-
-    // Try connect
-    tryConnect(activePort, port);
-    clearActivePort();
-}
-
-function startPortDrag(portEl, e) {
-    // If click-click already armed, disarm it (drag should take over)
-    clearActivePort();
+function beginPortPointer(portEl, e) {
+    // Cancel any previous pointer state
+    cleanupPortPointer();
 
     const fromPort = readPort(portEl);
 
-    // Start drag only from an OUTPUT port (feels better), but allow either:
-    // We'll normalize later anyway.
-    drag = {
+    // Visual feedback
+    setPortOutline(fromPort.el, true);
+
+    portPointer = {
+        pointerId: e.pointerId,
         fromPort,
-        tempPath: createTempPath()
+        moved: false,
+        startX: e.clientX,
+        startY: e.clientY,
+        tempPath: null
     };
 
-    setPortActiveVisual(fromPort.el, true);
-
-    // capture pointer globally so we can drag outside nodes
     viewport.setPointerCapture(e.pointerId);
 
-    viewport.addEventListener("pointermove", onDragMove);
-    viewport.addEventListener("pointerup", onDragEnd, { once: true });
-
-    // initial draw
-    updateTempPath(lastPointer.x, lastPointer.y);
+    viewport.addEventListener("pointermove", onPortPointerMove);
+    viewport.addEventListener("pointerup", onPortPointerUp, { once: true });
 }
 
-function onDragMove(e) {
-    lastPointer = { x: e.clientX, y: e.clientY };
-    updateTempPath(e.clientX, e.clientY);
-}
+function onPortPointerMove(e) {
+    if (!portPointer || e.pointerId !== portPointer.pointerId) return;
 
-function onDragEnd(e) {
-    viewport.removeEventListener("pointermove", onDragMove);
+    const dx = e.clientX - portPointer.startX;
+    const dy = e.clientY - portPointer.startY;
+    const dist2 = dx * dx + dy * dy;
 
-    // figure out if we released over a port
-    const elUnder = document.elementFromPoint(e.clientX, e.clientY);
-    const targetPortEl = elUnder && elUnder.classList && elUnder.classList.contains("port")
-        ? elUnder
-        : (elUnder && elUnder.closest ? elUnder.closest(".port") : null);
-
-    if (targetPortEl) {
-        const toPort = readPort(targetPortEl);
-        tryConnect(drag.fromPort, toPort);
+    // Movement threshold: if exceeded => drag mode
+    if (!portPointer.moved && dist2 > 16) {
+        portPointer.moved = true;
+        portPointer.tempPath = createTempPath();
     }
 
-    // cleanup ghost + visuals
-    if (drag?.tempPath) drag.tempPath.remove();
-    if (drag?.fromPort?.el) setPortActiveVisual(drag.fromPort.el, false);
-    drag = null;
+    if (portPointer.moved && portPointer.tempPath) {
+        updateTempPath(e.clientX, e.clientY);
+    }
+}
 
+function onPortPointerUp(e) {
+    viewport.removeEventListener("pointermove", onPortPointerMove);
+
+    if (!portPointer || e.pointerId !== portPointer.pointerId) {
+        cleanupPortPointer();
+        return;
+    }
+
+    // Find if released over a port
+    const targetPortEl = findPortElementUnderPointer(e.clientX, e.clientY);
+
+    if (portPointer.moved) {
+        // DRAG mode: connect if released on a port
+        if (targetPortEl) {
+            const toPort = readPort(targetPortEl);
+            tryConnect(portPointer.fromPort, toPort);
+        }
+    } else {
+        // TAP/CLICK mode:
+        // - if nothing armed => arm this port
+        // - else => connect armed->this
+        handleClickConnect(portPointer.fromPort);
+    }
+
+    cleanupPortPointer();
     redrawEdges();
 }
 
-function tryConnect(a, b) {
-    // Prevent same-node
-    if (a.nodeId === b.nodeId) return;
+function handleClickConnect(port) {
+    // clicking the same port again cancels
+    if (armedPort && armedPort.el === port.el) {
+        clearArmedPort();
+        return;
+    }
 
-    // Prevent same direction
+    if (!armedPort) {
+        armedPort = port;
+        setPortOutline(armedPort.el, true);
+        return;
+    }
+
+    // Attempt connection armed <-> port
+    tryConnect(armedPort, port);
+    clearArmedPort();
+}
+
+function clearArmedPort() {
+    if (armedPort?.el) setPortOutline(armedPort.el, false);
+    armedPort = null;
+}
+
+function cleanupPortPointer() {
+    if (!portPointer) return;
+
+    // remove temp path
+    if (portPointer.tempPath) portPointer.tempPath.remove();
+
+    // remove outline from the origin port IF it is not armed
+    if (portPointer.fromPort?.el) {
+        const keep = armedPort && armedPort.el === portPointer.fromPort.el;
+        if (!keep) setPortOutline(portPointer.fromPort.el, false);
+    }
+
+    portPointer = null;
+}
+
+function setPortOutline(portEl, on) {
+    portEl.style.outline = on ? "2px solid white" : "";
+}
+
+function findPortElementUnderPointer(clientX, clientY) {
+    const elUnder = document.elementFromPoint(clientX, clientY);
+    if (!elUnder) return null;
+    if (elUnder.classList && elUnder.classList.contains("port")) return elUnder;
+    if (elUnder.closest) return elUnder.closest(".port");
+    return null;
+}
+
+function readPort(portEl) {
+    return {
+        nodeId: Number(portEl.dataset.nodeId),
+        nodeType: portEl.dataset.nodeType,        // dialogue/key/ego
+        kind: portEl.dataset.kind,                // flow/social/...
+        direction: portEl.dataset.direction,      // in/out
+        el: portEl
+    };
+}
+
+function tryConnect(a, b) {
+    if (!a || !b) return;
+
+    // same node or same direction => no
+    if (a.nodeId === b.nodeId) return;
     if (a.direction === b.direction) return;
 
-    // Normalize
-    const from = a.direction === "out" ? a : b;
-    const to = a.direction === "out" ? b : a;
+    // normalize to from(out) -> to(in)
+    const from = (a.direction === "out") ? a : b;
+    const to = (a.direction === "out") ? b : a;
 
-    // Compatibility rules (match your Unity logic)
+    // only allow output->input
+    if (from.direction !== "out" || to.direction !== "in") return;
+
+    // compatibility rules (match your Unity logic)
     if (!isCompatible(from, to)) return;
 
-    // Prevent duplicates
     const id = edgeId(from, to);
     if (edges.some(e => e.id === id)) return;
 
     edges.push({
         id,
-        from: {
-            nodeId: from.nodeId,
-            kind: toPortKindEnum(from.kind),
-            direction: "Output",
-            index: 0
-        },
-        to: {
-            nodeId: to.nodeId,
-            kind: toPortKindEnum(to.kind),
-            direction: "Input",
-            index: 0
-        }
+        from: { nodeId: from.nodeId, kind: toPortKindEnum(from.kind), direction: "Output", index: 0 },
+        to: { nodeId: to.nodeId, kind: toPortKindEnum(to.kind), direction: "Input", index: 0 }
     });
-
-    redrawEdges();
 }
 
 function isCompatible(from, to) {
-    // Ego disallowed entirely in web tool (no ports anyway)
-    if (!from || !to) return false;
-
-    // types
-    const fromType = from.nodeType;
+    // no ports on ego in this web tool, so we ignore ego
+    const fromType = from.nodeType; // "dialogue" / "key"
     const toType = to.nodeType;
 
-    // Dialogue -> Dialogue flow only
+    // Dialogue -> Dialogue flow
     if (fromType === "dialogue" && toType === "dialogue") {
         return from.kind === "flow" && to.kind === "flow";
     }
 
-    // Dialogue -> Key hub entry (flow)
+    // Dialogue -> Key flow hub
     if (fromType === "dialogue" && toType === "key") {
         return from.kind === "flow" && to.kind === "flow";
     }
 
-    // Key -> Dialogue gating: key outputs (social/gender/ideology/purpose) -> dialogue flow in
+    // Key -> Dialogue gating
     if (fromType === "key" && toType === "dialogue") {
         return to.kind === "flow" && from.kind !== "flow";
     }
@@ -317,41 +427,21 @@ function isCompatible(from, to) {
     return false;
 }
 
-function readPort(portEl) {
-    return {
-        nodeId: Number(portEl.dataset.nodeId),
-        nodeType: portEl.dataset.nodeType,
-        kind: portEl.dataset.kind,           // lowercase: flow/social/...
-        direction: portEl.dataset.direction, // in/out
-        el: portEl
-    };
-}
-
-function clearActivePort() {
-    if (activePort?.el) setPortActiveVisual(activePort.el, false);
-    activePort = null;
-}
-
-function setPortActiveVisual(portEl, on) {
-    portEl.style.outline = on ? "2px solid white" : "";
-}
-
-// Unity uses PortKind enums; we keep strings but export as enum-like strings
 function toPortKindEnum(kindLower) {
-    // flow/social/gender/ideology/purpose -> Flow/Social/...
     return kindLower.charAt(0).toUpperCase() + kindLower.slice(1);
 }
 
 function edgeId(from, to) {
-    return `${from.nodeId}:${from.kind}:${from.direction}->${to.nodeId}:${to.kind}:${to.direction}`;
+    return `${from.nodeId}:${from.kind}->${to.nodeId}:${to.kind}`;
 }
 
 // =====================================================
-// Drawing edges (viewport-space SVG, NO SVG transform)
+// Edge drawing (SVG in viewport coords; DO NOT transform SVG)
 // =====================================================
 function redrawEdges() {
-    // Keep temp drag path if any; wipe everything else
-    const temp = drag?.tempPath || null;
+    // keep temp path if currently dragging
+    const temp = portPointer?.tempPath || null;
+
     edgesSvg.innerHTML = "";
     if (temp) edgesSvg.appendChild(temp);
 
@@ -367,7 +457,7 @@ function redrawEdges() {
         path.setAttribute("d", bezier(p1, p2));
         path.classList.add("connection");
 
-        // Allow selecting edges
+        // selectable edge
         path.style.pointerEvents = "stroke";
         path.dataset.edgeId = e.id;
 
@@ -385,11 +475,16 @@ function redrawEdges() {
     }
 }
 
-function bezier(p1, p2) {
-    const dx = Math.max(60, Math.min(160, Math.abs(p2.x - p1.x) * 0.35));
-    const c1x = p1.x + dx;
-    const c2x = p2.x - dx;
-    return `M ${p1.x} ${p1.y} C ${c1x} ${p1.y}, ${c2x} ${p2.y}, ${p2.x} ${p2.y}`;
+function findPortElForRef(ref) {
+    const nodeId = ref.nodeId;
+    const kind = String(ref.kind).toLowerCase(); // Flow -> flow etc
+    const dir = (ref.direction === "Output") ? "out" : "in";
+
+    return [...document.querySelectorAll(".port")].find(p =>
+        Number(p.dataset.nodeId) === nodeId &&
+        p.dataset.kind === kind &&
+        p.dataset.direction === dir
+    );
 }
 
 function portCenterViewport(el) {
@@ -401,42 +496,34 @@ function portCenterViewport(el) {
     };
 }
 
-function findPortElForRef(ref) {
-    const nodeId = ref.nodeId;
-    const kind = String(ref.kind).toLowerCase(); // Flow->flow etc
-
-    // Need direction: Output/Input -> out/in
-    const dir = ref.direction === "Output" ? "out" : "in";
-
-    return [...document.querySelectorAll(".port")].find(p =>
-        Number(p.dataset.nodeId) === nodeId &&
-        p.dataset.kind === kind &&
-        p.dataset.direction === dir
-    );
+function bezier(p1, p2) {
+    const dx = Math.max(60, Math.min(160, Math.abs(p2.x - p1.x) * 0.35));
+    const c1x = p1.x + dx;
+    const c2x = p2.x - dx;
+    return `M ${p1.x} ${p1.y} C ${c1x} ${p1.y}, ${c2x} ${p2.y}, ${p2.x} ${p2.y}`;
 }
 
-// Temp dotted drag path
+// Dotted preview path while dragging
 function createTempPath() {
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
     path.classList.add("connection");
     path.style.strokeDasharray = "6 6";
-    path.style.opacity = "0.8";
+    path.style.opacity = "0.9";
     path.style.pointerEvents = "none";
     edgesSvg.appendChild(path);
     return path;
 }
 
 function updateTempPath(clientX, clientY) {
-    if (!drag?.fromPort?.el || !drag?.tempPath) return;
+    if (!portPointer?.fromPort?.el || !portPointer?.tempPath) return;
 
     const vr = viewport.getBoundingClientRect();
     const p2 = { x: clientX - vr.left, y: clientY - vr.top };
-    const p1 = portCenterViewport(drag.fromPort.el);
+    const p1 = portCenterViewport(portPointer.fromPort.el);
 
-    drag.tempPath.setAttribute("d", bezier(p1, p2));
+    portPointer.tempPath.setAttribute("d", bezier(p1, p2));
 }
 
-// Keep svg sized to viewport so paths map 1:1
 function syncSvgSize() {
     const r = viewport.getBoundingClientRect();
     edgesSvg.setAttribute("width", r.width);
@@ -445,7 +532,7 @@ function syncSvgSize() {
 }
 
 // =====================================================
-// Selecting nodes / edges
+// Selection: nodes + edges
 // =====================================================
 function selectNode(nodeId) {
     selectedNodeId = nodeId;
@@ -466,48 +553,20 @@ function selectEdge(edgeId) {
     redrawEdges();
 }
 
-// Clicking empty space clears selection
+// Clear selection when clicking empty space
 viewport.addEventListener("pointerdown", (e) => {
-    // If click on empty viewport background (not node/port/edge)
-    if (e.target === viewport || e.target === canvas || e.target === edgesSvg) {
-        selectedNodeId = null;
-        selectedEdgeId = null;
-        document.querySelectorAll(".node").forEach(n => n.style.outline = "");
-        redrawEdges();
-    }
+    // If clicking on a node or port or edge, don't clear
+    if (e.target.closest && (e.target.closest(".node") || e.target.closest(".port"))) return;
+    if (e.target instanceof SVGPathElement) return;
+
+    selectedNodeId = null;
+    selectedEdgeId = null;
+    document.querySelectorAll(".node").forEach(n => n.style.outline = "");
+    redrawEdges();
 });
 
 // =====================================================
-// Delete Selected
-// =====================================================
-window.deleteSelected = function () {
-    // delete edge
-    if (selectedEdgeId) {
-        edges = edges.filter(e => e.id !== selectedEdgeId);
-        selectedEdgeId = null;
-        redrawEdges();
-        return;
-    }
-
-    // delete node
-    if (selectedNodeId) {
-        // remove node from nodes array
-        nodes = nodes.filter(n => n.id !== selectedNodeId);
-
-        // remove any edges connected to this node
-        edges = edges.filter(e => e.from.nodeId !== selectedNodeId && e.to.nodeId !== selectedNodeId);
-
-        // remove node element
-        const el = canvas.querySelector(`.node[data-id="${selectedNodeId}"]`);
-        if (el) el.remove();
-
-        selectedNodeId = null;
-        redrawEdges();
-    }
-};
-
-// =====================================================
-// UI helper controls
+// UI controls
 // =====================================================
 function makeTextarea(label, obj, key) {
     const wrap = document.createElement("div");
@@ -536,7 +595,7 @@ function makeSelect(label, values, obj, key, onChange) {
         s.appendChild(o);
     });
 
-    s.value = obj[key];
+    s.value = obj[key] ?? values[0];
     s.onchange = () => {
         obj[key] = s.value;
         if (onChange) onChange();
@@ -551,10 +610,9 @@ function makeSelect(label, values, obj, key, onChange) {
 // Dragging nodes (updates edges live)
 // =====================================================
 function makeDraggable(el, handle, node) {
-    let startX, startY;
+    let startX = 0, startY = 0;
 
     handle.onpointerdown = (e) => {
-        // Don’t drag if starting from a port
         if (e.target.classList.contains("port")) return;
 
         selectNode(node.id);
@@ -586,13 +644,15 @@ function makeDraggable(el, handle, node) {
 }
 
 // =====================================================
-// Pan / zoom (ONLY transform #canvas, NOT the SVG)
+// Pan / zoom (transform ONLY the canvas)
 // =====================================================
 let lastPan = null;
 
 viewport.addEventListener("pointerdown", (e) => {
-    // Pan only when clicking empty space (not node/port)
-    if (e.target.closest && e.target.closest(".node")) return;
+    // Pan only if not on node/port/edge
+    if (e.target.closest && (e.target.closest(".node") || e.target.closest(".port"))) return;
+    if (e.target instanceof SVGPathElement) return;
+
     lastPan = { x: e.clientX, y: e.clientY };
 });
 
@@ -605,23 +665,25 @@ document.addEventListener("pointermove", (e) => {
     redrawEdges();
 });
 
-document.addEventListener("pointerup", () => lastPan = null);
+document.addEventListener("pointerup", () => {
+    lastPan = null;
+});
 
 viewport.addEventListener("wheel", (e) => {
     e.preventDefault();
 
-    // zoom around cursor (optional but feels good)
-    const before = screenToCanvas(e.clientX, e.clientY);
+    const prevZoom = zoom;
+    const delta = (e.deltaY < 0) ? 1.1 : 0.9;
+    zoom = Math.max(0.3, Math.min(2, zoom * delta));
 
-    const factor = e.deltaY < 0 ? 1.1 : 0.9;
-    zoom *= factor;
-    zoom = Math.max(0.3, Math.min(2.0, zoom));
+    // Zoom around cursor (so it feels correct)
+    const vr = viewport.getBoundingClientRect();
+    const mx = e.clientX - vr.left;
+    const my = e.clientY - vr.top;
 
-    const after = screenToCanvas(e.clientX, e.clientY);
-
-    // adjust pan so point under cursor stays put
-    pan.x += (after.x - before.x) * zoom;
-    pan.y += (after.y - before.y) * zoom;
+    const scale = zoom / prevZoom;
+    pan.x = mx - (mx - pan.x) * scale;
+    pan.y = my - (my - pan.y) * scale;
 
     applyTransform();
     redrawEdges();
@@ -629,72 +691,46 @@ viewport.addEventListener("wheel", (e) => {
 
 function applyTransform() {
     canvas.style.transform = `translate(${pan.x}px, ${pan.y}px) scale(${zoom})`;
-}
-
-function screenToCanvas(clientX, clientY) {
-    // Converts screen point into "canvas space" (approx) for zoom-around
-    const vr = viewport.getBoundingClientRect();
-    const x = (clientX - vr.left - pan.x) / zoom;
-    const y = (clientY - vr.top - pan.y) / zoom;
-    return { x, y };
+    // IMPORTANT: do NOT transform the SVG
 }
 
 // =====================================================
-// Export / Import
+// Import/load graph
 // =====================================================
-window.exportJSON = function () {
-    const data = {
-        version: 1,
-        nodes,
-        edges
-    };
-
-    const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = "dialogue.json";
-    a.click();
-};
-
-importFile.onchange = (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = () => {
-        const data = JSON.parse(reader.result);
-        loadGraph(data);
-    };
-    reader.readAsText(file);
-};
-
 function loadGraph(data) {
-    // Clear DOM
-    canvas.innerHTML = "";
-    edgesSvg.innerHTML = "";
-
+    // reset
     nodes = [];
     edges = [];
     nextId = 1;
     selectedNodeId = null;
     selectedEdgeId = null;
-    clearActivePort();
-    if (drag?.tempPath) drag.tempPath.remove();
-    drag = null;
+    armedPort = null;
+    cleanupPortPointer();
 
-    // Load nodes
-    if (Array.isArray(data.nodes)) {
-        for (const n of data.nodes) {
-            nodes.push(n);
-            nextId = Math.max(nextId, n.id + 1);
-            renderNode(n);
-        }
+    canvas.innerHTML = "";
+    edgesSvg.innerHTML = "";
+
+    if (!data || !Array.isArray(data.nodes) || !Array.isArray(data.edges)) {
+        alert("Import failed: missing nodes/edges arrays.");
+        return;
     }
 
-    // Load edges
-    if (Array.isArray(data.edges)) {
-        // keep only edges that still have valid endpoints
-        edges = data.edges.filter(e => e && e.from && e.to);
+    // nodes
+    for (const n of data.nodes) {
+        nodes.push(n);
+        nextId = Math.max(nextId, (n.id || 0) + 1);
+        renderNode(n);
+    }
+
+    // edges
+    for (const e of data.edges) {
+        // keep if minimally valid
+        if (!e?.from?.nodeId || !e?.to?.nodeId) continue;
+        if (!e.id) {
+            // rebuild a stable-ish id if missing
+            e.id = `${e.from.nodeId}:${String(e.from.kind).toLowerCase()}->${e.to.nodeId}:${String(e.to.kind).toLowerCase()}`;
+        }
+        edges.push(e);
     }
 
     redrawEdges();
