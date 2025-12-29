@@ -1,0 +1,1130 @@
+{
+  "version": 1,
+  "nodes": [
+    {
+      "id": 32,
+      "type": "ego",
+      "x": 21.599998474121094,
+      "y": 55.20001220703125,
+      "w": 185.60000610351562,
+      "h": 62.4000244140625,
+      "data": {
+        "speaker": "",
+        "text": "",
+        "stableText": "",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "ego": "None"
+      }
+    },
+    {
+      "id": 33,
+      "type": "key",
+      "x": 483.1999816894531,
+      "y": 159.19998168945312,
+      "w": 215.20004272460938,
+      "h": 219.99996948242188,
+      "data": {
+        "speaker": "",
+        "text": "",
+        "stableText": "",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "social": "Aristocrats",
+        "gender": "Male",
+        "ideology": "Romantic",
+        "purpose": "Poet",
+        "ego": ""
+      }
+    },
+    {
+      "id": 34,
+      "type": "dialogue",
+      "x": 840.800048828125,
+      "y": -260.384033203125,
+      "w": 204,
+      "h": 360,
+      "data": {
+        "speaker": "Player",
+        "text": "",
+        "stableText": "Your Majesty, I am overwhelmed. ",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "ego": ""
+      }
+    },
+    {
+      "id": 35,
+      "type": "dialogue",
+      "x": 17.600006103515625,
+      "y": 163.20001220703125,
+      "w": 443.20001220703125,
+      "h": 150,
+      "data": {
+        "speaker": "NPC",
+        "text": "Here comes my innocent! This is my victory, securing you for England's future. ",
+        "stableText": "",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "ego": ""
+      }
+    },
+    {
+      "id": 36,
+      "type": "dialogue",
+      "x": 831.6908569335938,
+      "y": 105.26849365234375,
+      "w": 521.5999145507812,
+      "h": 360,
+      "data": {
+        "speaker": "Player",
+        "text": "",
+        "stableText": "Your Majesty does me an honour beyond my deserts. I am your loyal servant, body and name.",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "ego": ""
+      }
+    },
+    {
+      "id": 37,
+      "type": "dialogue",
+      "x": 826.1412353515625,
+      "y": 476.6192321777344,
+      "w": 432.7996826171875,
+      "h": 360,
+      "data": {
+        "speaker": "Player",
+        "text": "",
+        "stableText": "My heart trembles, Majesty, as though fate itself had spoken my name aloud.",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "ego": ""
+      }
+    },
+    {
+      "id": 38,
+      "type": "dialogue",
+      "x": 825.5497436523438,
+      "y": 852.4064331054688,
+      "w": 504.79986572265625,
+      "h": 360,
+      "data": {
+        "speaker": "Player",
+        "text": "",
+        "stableText": "If words are granted me, Majesty, I shall set this hour down so time itself may remember it.",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "ego": ""
+      }
+    },
+    {
+      "id": 39,
+      "type": "dialogue",
+      "x": 1101.5999755859375,
+      "y": -260.67193603515625,
+      "w": 180.800048828125,
+      "h": 150,
+      "data": {
+        "speaker": "NPC",
+        "text": "Do you know what I see when I look at you? Oak. Strong English oak. Come closer to the fire. Though they pile the logs to heaven, still this cold finds me.",
+        "stableText": "",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "ego": ""
+      }
+    },
+    {
+      "id": 40,
+      "type": "dialogue",
+      "x": 1408.9891357421875,
+      "y": 105.96791076660156,
+      "w": 909.5994873046875,
+      "h": 150,
+      "data": {
+        "speaker": "NPC",
+        "text": "Oak, yes — but oak must stand straight, rooted in soil that knows its fathers. England has need of such men. Come nearer; the cold respects neither crown nor muscle.",
+        "stableText": "",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "ego": ""
+      }
+    },
+    {
+      "id": 41,
+      "type": "dialogue",
+      "x": 1337.0146484375,
+      "y": 476.1166076660156,
+      "w": 896.799560546875,
+      "h": 150,
+      "data": {
+        "speaker": "NPC",
+        "text": "Oak, or flame — I cannot tell which stirs me more. There are souls born to catch the weather of the world and feel it first. Come, warm yourself; even destiny shivers.",
+        "stableText": "",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "ego": ""
+      }
+    },
+    {
+      "id": 42,
+      "type": "dialogue",
+      "x": 1394.0992431640625,
+      "y": 850.1143188476562,
+      "w": 882.3995361328125,
+      "h": 150,
+      "data": {
+        "speaker": "NPC",
+        "text": "Oak may rot, child — but words endure. If you have a tongue that listens, England may yet be spoken anew. Come closer; history is always written in warm rooms.",
+        "stableText": "",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "ego": ""
+      }
+    },
+    {
+      "id": 43,
+      "type": "key",
+      "x": 2014.35791015625,
+      "y": -318.4918518066406,
+      "w": 185.600341796875,
+      "h": 219.99993896484375,
+      "data": {
+        "speaker": "",
+        "text": "",
+        "stableText": "",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "social": "None",
+        "gender": "None",
+        "ideology": "None",
+        "purpose": "None",
+        "ego": ""
+      }
+    },
+    {
+      "id": 44,
+      "type": "dialogue",
+      "x": 2503.65673828125,
+      "y": -1555.542724609375,
+      "w": 65.60009765625,
+      "h": 360,
+      "data": {
+        "speaker": "Player",
+        "text": "",
+        "stableText": "You honor me, madam, but my ancestors won their glory through valor",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "ego": ""
+      }
+    },
+    {
+      "id": 45,
+      "type": "dialogue",
+      "x": 2514.856689453125,
+      "y": -1185.942626953125,
+      "w": 65.60009765625,
+      "h": 360,
+      "data": {
+        "speaker": "Player",
+        "text": "",
+        "stableText": "Their blood runs in me still, madam. If England calls for strength, I shall not be found wanting.",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "ego": ""
+      }
+    },
+    {
+      "id": 46,
+      "type": "dialogue",
+      "x": 2516.456787109375,
+      "y": -824.3426513671875,
+      "w": 65.599853515625,
+      "h": 360,
+      "data": {
+        "speaker": "Player",
+        "text": "",
+        "stableText": "Their deeds were loud, madam — yet I have often thought glory a quieter thing, heard only by the heart that seeks it.",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "ego": ""
+      }
+    },
+    {
+      "id": 47,
+      "type": "dialogue",
+      "x": 2514.056640625,
+      "y": -454.7427978515625,
+      "w": 65.60009765625,
+      "h": 360,
+      "data": {
+        "speaker": "Player",
+        "text": "",
+        "stableText": "Valor lives only as long as it is remembered, madam. If my forebears endure, it is because someone once gave their courage a name.",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "ego": ""
+      }
+    },
+    {
+      "id": 48,
+      "type": "dialogue",
+      "x": 2689.1396484375,
+      "y": -86.12039184570312,
+      "w": 190.39990234375,
+      "h": 360,
+      "data": {
+        "speaker": "Player",
+        "text": "",
+        "stableText": "Your care humbles me, madam. I stand ready for whatever service you deem fit.",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "ego": ""
+      }
+    },
+    {
+      "id": 49,
+      "type": "key",
+      "x": 2365.308349609375,
+      "y": 87.38707733154297,
+      "w": 185.599609375,
+      "h": 220,
+      "data": {
+        "speaker": "",
+        "text": "",
+        "stableText": "",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "social": "None",
+        "gender": "None",
+        "ideology": "None",
+        "purpose": "None",
+        "ego": ""
+      }
+    },
+    {
+      "id": 50,
+      "type": "dialogue",
+      "x": 2686.665283203125,
+      "y": 289.10479736328125,
+      "w": 180.800048828125,
+      "h": 360,
+      "data": {
+        "speaker": "Player",
+        "text": "",
+        "stableText": "Then let England spend me well, madam. I would not be spared if others must fall.",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "ego": ""
+      }
+    },
+    {
+      "id": 51,
+      "type": "dialogue",
+      "x": 2687.729248046875,
+      "y": 664.00439453125,
+      "w": 180.7998046875,
+      "h": 360,
+      "data": {
+        "speaker": "Player",
+        "text": "",
+        "stableText": "Yet a man is more than timber for the hearth, madam. Even oak bends, if it is to live.",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "ego": ""
+      }
+    },
+    {
+      "id": 52,
+      "type": "dialogue",
+      "x": 2694.49853515625,
+      "y": 1027.9202880859375,
+      "w": 190.400390625,
+      "h": 360,
+      "data": {
+        "speaker": "Player",
+        "text": "",
+        "stableText": "If men must be spent, madam, let someone remember why. Otherwise even oak burns without leaving a trace.",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "ego": ""
+      }
+    },
+    {
+      "id": 53,
+      "type": "key",
+      "x": 2378.91357421875,
+      "y": 627.0447998046875,
+      "w": 185.60009765625,
+      "h": 220,
+      "data": {
+        "speaker": "",
+        "text": "",
+        "stableText": "",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "social": "None",
+        "gender": "None",
+        "ideology": "None",
+        "purpose": "None",
+        "ego": ""
+      }
+    },
+    {
+      "id": 54,
+      "type": "dialogue",
+      "x": 3657.177734375,
+      "y": 329.1590576171875,
+      "w": 427.199951171875,
+      "h": 360,
+      "data": {
+        "speaker": "Player",
+        "text": "",
+        "stableText": "our warmth is a mercy, madam. I am grateful to stand where your gaze falls.",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "ego": ""
+      }
+    },
+    {
+      "id": 55,
+      "type": "dialogue",
+      "x": 3654.777587890625,
+      "y": 697.958984375,
+      "w": 547.999755859375,
+      "h": 360,
+      "data": {
+        "speaker": "Player",
+        "text": "",
+        "stableText": "Then let me stand as I am, madam — not flame nor parchment, but flesh that yet endures the cold.",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "ego": ""
+      }
+    },
+    {
+      "id": 56,
+      "type": "dialogue",
+      "x": 3657.177734375,
+      "y": 1071.558837890625,
+      "w": 472.7998046875,
+      "h": 360,
+      "data": {
+        "speaker": "Player",
+        "text": "",
+        "stableText": "Some are born to feel the weather, yes — but the storm still chooses its own course.",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "ego": ""
+      }
+    },
+    {
+      "id": 57,
+      "type": "dialogue",
+      "x": 3657.977783203125,
+      "y": 1441.1588134765625,
+      "w": 549.600341796875,
+      "h": 360,
+      "data": {
+        "speaker": "Player",
+        "text": "",
+        "stableText": "If history is written in warm rooms, madam, then words must learn to survive the cold beyond them.",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "ego": ""
+      }
+    },
+    {
+      "id": 58,
+      "type": "key",
+      "x": -352.6243896484375,
+      "y": 161.756103515625,
+      "w": 185.6000213623047,
+      "h": 220,
+      "data": {
+        "speaker": "",
+        "text": "",
+        "stableText": "",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "social": "Aristocrats",
+        "gender": "Male",
+        "ideology": "Romantic",
+        "purpose": "Poet",
+        "ego": ""
+      }
+    },
+    {
+      "id": 59,
+      "type": "key",
+      "x": -359.3169860839844,
+      "y": 477.85369873046875,
+      "w": 185.5998992919922,
+      "h": 219.99993896484375,
+      "data": {
+        "speaker": "",
+        "text": "",
+        "stableText": "",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "social": "None",
+        "gender": "Female",
+        "ideology": "None",
+        "purpose": "None",
+        "ego": ""
+      }
+    },
+    {
+      "id": 60,
+      "type": "dialogue",
+      "x": 15.317171096801758,
+      "y": 471.0244140625,
+      "w": 180.80001831054688,
+      "h": 176.79998779296875,
+      "data": {
+        "speaker": "NPC",
+        "text": "Orlando, England has no use for a woman like you!",
+        "stableText": "",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "ego": ""
+      }
+    },
+    {
+      "id": 61,
+      "type": "key",
+      "x": -360.6382249087533,
+      "y": 828.0185695314267,
+      "data": {
+        "social": "Marginals",
+        "gender": "None",
+        "ideology": "None",
+        "purpose": "None"
+      }
+    },
+    {
+      "id": 62,
+      "type": "dialogue",
+      "x": -21.09704009326243,
+      "y": 832.9560844319375,
+      "data": {
+        "speaker": "NPC",
+        "text": "HELP!! Intruder! Get it out of here!!",
+        "stableText": "",
+        "fragmentedText": "",
+        "ghostlyText": ""
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": {
+        "nodeId": 33,
+        "direction": "Output",
+        "kind": "Social",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 34,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 35,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 33,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 33,
+        "direction": "Output",
+        "kind": "Gender",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 36,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 33,
+        "direction": "Output",
+        "kind": "Ideology",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 37,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 33,
+        "direction": "Output",
+        "kind": "Purpose",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 38,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 34,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 39,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 36,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 40,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 37,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 41,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 38,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 42,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 39,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 43,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 43,
+        "direction": "Output",
+        "kind": "Social",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 44,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 43,
+        "direction": "Output",
+        "kind": "Gender",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 45,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 43,
+        "direction": "Output",
+        "kind": "Ideology",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 46,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 43,
+        "direction": "Output",
+        "kind": "Purpose",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 47,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 40,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 49,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 49,
+        "direction": "Output",
+        "kind": "Social",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 48,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 49,
+        "direction": "Output",
+        "kind": "Gender",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 50,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 49,
+        "direction": "Output",
+        "kind": "Ideology",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 51,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 49,
+        "direction": "Output",
+        "kind": "Purpose",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 52,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 41,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 53,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 42,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 53,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 53,
+        "direction": "Output",
+        "kind": "Social",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 54,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 53,
+        "direction": "Output",
+        "kind": "Gender",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 55,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 53,
+        "direction": "Output",
+        "kind": "Purpose",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 57,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 53,
+        "direction": "Output",
+        "kind": "Ideology",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 57,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 58,
+        "direction": "Output",
+        "kind": "Social",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 35,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 58,
+        "direction": "Output",
+        "kind": "Gender",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 35,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 58,
+        "direction": "Output",
+        "kind": "Ideology",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 35,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 58,
+        "direction": "Output",
+        "kind": "Purpose",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 35,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 59,
+        "direction": "Output",
+        "kind": "Social",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 60,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 59,
+        "direction": "Output",
+        "kind": "Gender",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 60,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 59,
+        "direction": "Output",
+        "kind": "Ideology",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 60,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 59,
+        "direction": "Output",
+        "kind": "Purpose",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 60,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 61,
+        "kind": "social",
+        "direction": "Output",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 62,
+        "kind": "flow",
+        "direction": "Input",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 61,
+        "kind": "gender",
+        "direction": "Output",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 62,
+        "kind": "flow",
+        "direction": "Input",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 61,
+        "kind": "ideology",
+        "direction": "Output",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 62,
+        "kind": "flow",
+        "direction": "Input",
+        "index": 0
+      }
+    },
+    {
+      "from": {
+        "nodeId": 61,
+        "kind": "purpose",
+        "direction": "Output",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 62,
+        "kind": "flow",
+        "direction": "Input",
+        "index": 0
+      }
+    }
+  ]
+}
