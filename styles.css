@@ -39,18 +39,23 @@ html, body {
     touch-action: none;
 }
 
+/* SVG edges layer */
 #edges {
     position: absolute;
     inset: 0;
-    pointer-events: auto;
+    pointer-events: auto; /* we need the edge midpoint dots to receive input */
+    z-index: 50;
 }
 
+/* Node canvas (panned/zoomed) */
 #canvas {
     position: absolute;
     inset: 0;
     transform-origin: 0 0;
+    z-index: 10;
 }
 
+/* Nodes */
 .node {
     position: absolute;
     min-width: 220px;
@@ -62,9 +67,16 @@ html, body {
 }
 
     .node header {
-        font-weight: bold;
+        font-weight: 700;
         margin-bottom: 6px;
         cursor: grab;
+    }
+
+    .node label {
+        display: block;
+        font-size: 13px;
+        opacity: 0.9;
+        margin-top: 8px;
     }
 
     .node textarea,
@@ -75,27 +87,23 @@ html, body {
         background: #222;
         color: white;
         border: 1px solid #555;
-        border-radius: 4px;
-        padding: 4px;
+        border-radius: 6px;
+        padding: 6px;
     }
 
-.port {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #aaa;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    .node textarea {
+        min-height: 64px;
+        resize: vertical;
+    }
+
+/* Selected node outline */
+.selected-node {
+    outline: 2px solid #4da3ff;
+    outline-offset: 2px;
+    border-radius: 10px;
 }
 
-    .port.out {
-        right: -6px;
-    }
-
-    .port.in {
-        left: -6px;
-    }
+/* Ports */
 .port {
     width: 12px;
     height: 12px;
@@ -104,7 +112,16 @@ html, body {
     border: 2px solid #000;
     position: absolute;
     cursor: pointer;
+    z-index: 5;
 }
+
+    .port.in {
+        left: -8px;
+    }
+
+    .port.out {
+        right: -8px;
+    }
 
     .port.flow {
         background: #5fa8ff;
@@ -126,31 +143,58 @@ html, body {
         background: #eb4d4b;
     }
 
-    .port.in {
-        left: -8px;
-        top: 50%;
-        transform: translateY(-50%);
-    }
+/* Active/armed port */
+.port-armed {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+}
 
-    .port.out {
-        right: -8px;
-    }
-
+/* Edge path (simple + clean) */
 .connection {
     fill: none;
     stroke: #aaa;
     stroke-width: 2;
-    pointer-events: stroke;
+    pointer-events: none;
 }
-.selected-node {
-    outline: 2px solid #4da3ff;
-    outline-offset: 2px;
-}
+
+/* Selected edge path */
 .selected-edge {
     stroke: #4da3ff !important;
-    stroke-width: 3;
+    stroke-width: 3 !important;
 }
-/* Optional: when dragging a connection, show possible drop target */
-.port-drop-target {
-    outline: 2px solid #4da3ff;
+
+/* Temp dotted connection while dragging */
+.temp-connection {
+    stroke-dasharray: 6 6;
+    opacity: 0.85;
+}
+
+/* Edge selection via midpoint dot */
+.edge-hit {
+    fill: rgba(0,0,0,0); /* invisible hit area */
+    stroke: rgba(0,0,0,0);
+    cursor: pointer;
+    pointer-events: all;
+}
+
+.edge-dot {
+    fill: #cfcfcf;
+    stroke: #000;
+    stroke-width: 2;
+    cursor: pointer;
+    pointer-events: all;
+}
+
+    .edge-dot:hover {
+        fill: #ffffff;
+    }
+
+.connection.selected {
+    stroke: #4da3ff !important;
+    stroke-width: 3 !important;
+}
+
+/* If JS does: circle.classList.add("selected") */
+.edge-dot.selected {
+    fill: #4da3ff !important;
 }
