@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Dialogue Editor</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+    <div id="toolbar">
+        <button onclick="createNode('dialogue')">Dialogue</button>
+        <button onclick="createNode('key')">Key</button>
+        <button onclick="createNode('ego')">Ego</button>
+
+        <span class="spacer"></span>
+
+        <button onclick="exportJSON()">Export</button>
+        <input type="file" id="importFile" accept=".json" hidden />
+        <button onclick="document.getElementById('importFile').click()">Import</button>
+    </div>
+
+    <div id="viewport">
+        <svg id="edges"></svg>
+        <div id="canvas"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
