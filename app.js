@@ -599,3 +599,103 @@ viewport.addEventListener("pointerdown", (e) => {
 document.addEventListener("pointermove", (e) => {
     if (!lastPan) return;
     pan.x += e.clientX - lastPan.x;
+    pan.y += e.clientY - lastPan.y;
+    lastPan = { x: e.clientX, y: e.clientY };
+    applyTransform();
+    redrawEdges();
+});
+
+document.addEventListener("pointerup", () => lastPan = null);
+
+viewport.addEventListener("wheel", (e) => {
+    e.preventDefault();
+
+    // zoom around cursor (optional but feels good)
+    const before = screenToCanvas(e.clientX, e.clientY);
+
+    const factor = e.deltaY < 0 ? 1.1 : 0.9;
+    zoom *= factor;
+    zoom = Math.max(0.3, Math.min(2.0, zoom));
+
+    const after = screenToCanvas(e.clientX, e.clientY);
+
+    // adjust pan so point under cursor stays put
+    pan.x += (after.x - before.x) * zoom;
+    pan.y += (after.y - before.y) * zoom;
+
+    applyTransform();
+    redrawEdges();
+}, { passive: false });
+
+function applyTransform() {
+    canvas.style.transform = `translate(${pan.x}px, ${pan.y}px) scale(${zoom})`;
+}
+
+function screenToCanvas(clientX, clientY) {
+    // Converts screen point into "canvas space" (approx) for zoom-around
+    const vr = viewport.getBoundingClientRect();
+    const x = (clientX - vr.left - pan.x) / zoom;
+    const y = (clientY - vr.top - pan.y) / zoom;
+    return { x, y };
+}
+
+// =====================================================
+// Export / Import
+// =====================================================
+window.exportJSON = function () {
+    const data = {
+        version: 1,
+        nodes,
+        edges
+    };
+
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "dialogue.json";
+    a.click();
+};
+
+importFile.onchange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = () => {
+        const data = JSON.parse(reader.result);
+        loadGraph(data);
+    };
+    reader.readAsText(file);
+};
+
+function loadGraph(data) {
+    // Clear DOM
+    canvas.innerHTML = "";
+    edgesSvg.innerHTML = "";
+
+    nodes = [];
+    edges = [];
+    nextId = 1;
+    selectedNodeId = null;
+    selectedEdgeId = null;
+    clearActivePort();
+    if (drag?.tempPath) drag.tempPath.remove();
+    drag = null;
+
+    // Load nodes
+    if (Array.isArray(data.nodes)) {
+        for (const n of data.nodes) {
+            nodes.push(n);
+            nextId = Math.max(nextId, n.id + 1);
+            renderNode(n);
+        }
+    }
+
+    // Load edges
+    if (Array.isArray(data.edges)) {
+        // keep only edges that still have valid endpoints
+        edges = data.edges.filter(e => e && e.from && e.to);
+    }
+
+    redrawEdges();
+}
