@@ -43,7 +43,7 @@ html, body {
 #edges {
     position: absolute;
     inset: 0;
-    pointer-events: auto; /* we need the edge midpoint dots to receive input */
+    pointer-events: none; /* we need the edge midpoint dots to receive input */
     z-index: 50;
 }
 

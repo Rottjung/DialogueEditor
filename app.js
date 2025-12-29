@@ -667,6 +667,87 @@ function applyTransform() {
 }
 
 // -----------------------------------------------------
+// Pinch zoom (iPad / touchscreen) — does NOT change other behavior
+// -----------------------------------------------------
+let pinch = null;
+// { id1, id2, startDist, startZoom, worldMid:{x,y} }
+
+function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+
+function dist(a, b) {
+    const dx = a.clientX - b.clientX;
+    const dy = a.clientY - b.clientY;
+    return Math.sqrt(dx * dx + dy * dy);
+}
+
+function mid(a, b) {
+    return { x: (a.clientX + b.clientX) * 0.5, y: (a.clientY + b.clientY) * 0.5 };
+}
+
+viewport.addEventListener("touchstart", (e) => {
+    // Don’t interfere with port drag in progress
+    if (portGesture) return;
+
+    if (e.touches.length === 2) {
+        e.preventDefault();
+
+        const t1 = e.touches[0];
+        const t2 = e.touches[1];
+
+        const m = mid(t1, t2);
+
+        // World point currently under the pinch midpoint (keep it anchored)
+        const worldMid = {
+            x: (m.x - pan.x) / zoom,
+            y: (m.y - pan.y) / zoom
+        };
+
+        pinch = {
+            id1: t1.identifier,
+            id2: t2.identifier,
+            startDist: dist(t1, t2),
+            startZoom: zoom,
+            worldMid
+        };
+    }
+}, { passive: false });
+
+viewport.addEventListener("touchmove", (e) => {
+    if (!pinch) return;
+    if (e.touches.length !== 2) return;
+
+    e.preventDefault();
+
+    const t1 = e.touches[0];
+    const t2 = e.touches[1];
+
+    const m = mid(t1, t2);
+    const d = dist(t1, t2);
+
+    const scale = d / Math.max(1, pinch.startDist);
+    zoom = clamp(pinch.startZoom * scale, 0.3, 2.0);
+
+    // Adjust pan so the same world point stays under the midpoint
+    pan.x = m.x - pinch.worldMid.x * zoom;
+    pan.y = m.y - pinch.worldMid.y * zoom;
+
+    applyTransform();
+}, { passive: false });
+
+viewport.addEventListener("touchend", (e) => {
+    if (!pinch) return;
+
+    // If fingers lifted or gesture broken, stop pinch mode
+    if (e.touches.length < 2) {
+        pinch = null;
+    }
+}, { passive: false });
+
+viewport.addEventListener("touchcancel", () => {
+    pinch = null;
+}, { passive: false });
+
+// -----------------------------------------------------
 // Import
 // -----------------------------------------------------
 function loadGraph(data) {
