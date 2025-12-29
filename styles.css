@@ -42,7 +42,7 @@ html, body {
 #edges {
     position: absolute;
     inset: 0;
-    pointer-events: none;
+    pointer-events: auto;
 }
 
 #canvas {
@@ -140,4 +140,17 @@ html, body {
     fill: none;
     stroke: #aaa;
     stroke-width: 2;
+    pointer-events: stroke;
+}
+.selected-node {
+    outline: 2px solid #4da3ff;
+    outline-offset: 2px;
+}
+.selected-edge {
+    stroke: #4da3ff !important;
+    stroke-width: 3;
+}
+/* Optional: when dragging a connection, show possible drop target */
+.port-drop-target {
+    outline: 2px solid #4da3ff;
 }
