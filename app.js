@@ -303,7 +303,7 @@ viewport.addEventListener("pointerdown", (e) => {
 // Delete Selected
 // -----------------------------
 function deleteSelected() {
-    // Priority: edge delete first
+    // --- Delete edge first (highest priority)
     if (selectedEdgeId != null) {
         edges = edges.filter(e => e._id !== selectedEdgeId);
         selectedEdgeId = null;
@@ -311,24 +311,36 @@ function deleteSelected() {
         return;
     }
 
-    // Then node delete
+    // --- Delete node
     if (selectedNodeId != null) {
         const nid = selectedNodeId;
 
-        // remove node
-        nodes = nodes.filter(n => n.id !== nid);
+        // 1. Remove edges connected to this node FIRST
+        edges = edges.filter(e =>
+            e.from.nodeId !== nid &&
+            e.to.nodeId !== nid
+        );
 
-        // remove node DOM
+        // 2. Clear any active port / selection referencing it
+        if (activePort && activePort.nodeId === nid) {
+            clearActivePort();
+        }
+
+        selectedNodeId = null;
+        selectedEdgeId = null;
+
+        // 3. Remove node DOM
         const el = canvas.querySelector(`.node[data-id="${nid}"]`);
         if (el) el.remove();
 
-        // remove connected edges
-        edges = edges.filter(e => e.from.nodeId !== nid && e.to.nodeId !== nid);
+        // 4. Remove node data
+        nodes = nodes.filter(n => n.id !== nid);
 
-        selectedNodeId = null;
+        // 5. Redraw safely
         redrawEdges();
     }
 }
+
 
 // -----------------------------
 // Connecting ports (click-click + drag)
