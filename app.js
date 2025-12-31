@@ -1,4 +1,4 @@
-// =====================================================
+ï»¿// =====================================================
 // Dialogue Editor - app.js
 // - Pan/zoom on #canvas only
 // - Edges drawn in viewport-space SVG (no SVG transform)
@@ -12,7 +12,7 @@ const edgesSvg = document.getElementById("edges");
 const viewport = document.getElementById("viewport");
 const importFile = document.getElementById("importFile");
 
-// IMPORTANT: SVG must receive pointer input
+// IMPORTANT: SVG must receive pointer input (for edge dot selection)
 edgesSvg.style.pointerEvents = "none";
 
 // --- enums ---
@@ -44,6 +44,10 @@ let portGesture = null;
 // pan/zoom
 let pan = { x: 0, y: 0 };
 let zoom = 1;
+
+// NEW: optional graph-level fields (kept simple)
+let startNodeId = -1;
+let globalEgo = "None";
 
 syncSvgSize();
 applyTransform(); // redraw edges too
@@ -95,7 +99,8 @@ window.deleteSelected = function () {
 };
 
 window.exportJSON = function () {
-    const data = { version: 1, nodes, edges };
+    // Export includes startNodeId/globalEgo (compatible with your Unity import/export)
+    const data = { version: 1, startNodeId, globalEgo, nodes, edges };
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
@@ -120,7 +125,19 @@ importFile.onchange = e => {
 // -----------------------------------------------------
 function defaultData(type) {
     if (type === "dialogue") {
-        return { speaker: "NPC", text: "", stableText: "", fragmentedText: "", ghostlyText: "" };
+        // âœ… Everyone has variants + end toggles now
+        return {
+            speaker: "NPC",
+            stableText: "",
+            fragmentedText: "",
+            ghostlyText: "",
+            stableEnd: false,
+            fragmentedEnd: false,
+            ghostlyEnd: false,
+
+            // legacy field kept for backward compatibility
+            text: ""
+        };
     }
     if (type === "key") {
         return { social: "None", gender: "None", ideology: "None", purpose: "None" };
@@ -181,7 +198,11 @@ function renderNode(node) {
     }
 
     if (node.type === "ego") {
-        el.appendChild(makeSelect("Ego", egoEnums, node.data, "ego"));
+        el.appendChild(makeSelect("Ego", egoEnums, node.data, "ego", () => {
+            globalEgo = node.data.ego || "None";
+        }));
+        // Keep globalEgo in sync with the first/last ego node edited
+        globalEgo = node.data.ego || globalEgo;
     }
 
     canvas.appendChild(el);
@@ -193,15 +214,63 @@ function renderDialogueFields(el, node) {
     const wrap = document.createElement("div");
     wrap.className = "dialogue-fields";
 
-    if (node.data.speaker === "Player") {
-        wrap.appendChild(makeTextarea("Stable", node.data, "stableText"));
-        wrap.appendChild(makeTextarea("Fragmented", node.data, "fragmentedText"));
-        wrap.appendChild(makeTextarea("Ghostly", node.data, "ghostlyText"));
-    } else {
-        wrap.appendChild(makeTextarea("Text", node.data, "text"));
-    }
+    // âœ… Always show the 3 variants (NPC/Player/Narrator all use them now)
+    wrap.appendChild(makeVariantBlock("Stable", node.data, "stableText", "stableEnd"));
+    wrap.appendChild(makeVariantBlock("Fragmented", node.data, "fragmentedText", "fragmentedEnd"));
+    wrap.appendChild(makeVariantBlock("Ghostly", node.data, "ghostlyText", "ghostlyEnd"));
 
     el.appendChild(wrap);
+}
+
+function makeVariantBlock(label, obj, textKey, endKey) {
+    const wrap = document.createElement("div");
+    wrap.className = "variant-block";
+
+    const header = document.createElement("div");
+    header.className = "variant-header";
+
+    const l = document.createElement("label");
+    l.textContent = label;
+    l.style.display = "inline-block";
+    l.style.marginRight = "10px";
+
+    const endWrap = document.createElement("label");
+    endWrap.style.display = "inline-flex";
+    endWrap.style.alignItems = "center";
+    endWrap.style.gap = "6px";
+
+    const cb = document.createElement("input");
+    cb.type = "checkbox";
+    cb.checked = !!obj[endKey];
+
+    const cbText = document.createElement("span");
+    cbText.textContent = "End";
+
+    endWrap.appendChild(cb);
+    endWrap.appendChild(cbText);
+
+    header.appendChild(l);
+    header.appendChild(endWrap);
+
+    const t = document.createElement("textarea");
+    t.value = obj[textKey] || "";
+    t.oninput = () => obj[textKey] = t.value;
+
+    const apply = () => {
+        // Hide textarea if variant is marked as End (matching Unity editor behavior)
+        t.style.display = obj[endKey] ? "none" : "block";
+    };
+
+    cb.onchange = () => {
+        obj[endKey] = cb.checked;
+        apply();
+    };
+
+    apply();
+
+    wrap.appendChild(header);
+    wrap.appendChild(t);
+    return wrap;
 }
 
 // -----------------------------------------------------
@@ -424,15 +493,15 @@ function redrawEdges() {
         path.classList.add("connection");
         if (e.id === selectedEdgeId) path.classList.add("selected-edge");
 
-        // IMPORTANT: path itself is NOT used for clicking anymore (too unreliable on some browsers)
+        // IMPORTANT: path itself is NOT used for clicking
         path.style.pointerEvents = "none";
 
         edgesSvg.appendChild(path);
 
-        // Midpoint handle dot (reliable hit target)
+        // Midpoint handle dot
         const mid = { x: (p1.x + p2.x) * 0.5, y: (p1.y + p2.y) * 0.5 };
 
-        // Invisible bigger hit-circle (so it’s easy to tap)
+        // Invisible bigger hit-circle
         const hit = document.createElementNS("http://www.w3.org/2000/svg", "circle");
         hit.setAttribute("cx", mid.x);
         hit.setAttribute("cy", mid.y);
@@ -447,7 +516,6 @@ function redrawEdges() {
         dot.classList.add("edge-dot");
         if (e.id === selectedEdgeId) dot.classList.add("selected");
 
-        // Both hit + dot select the edge
         const selectFn = (ev) => {
             ev.stopPropagation();
             selectEdge(e.id);
@@ -540,9 +608,7 @@ function selectEdge(edgeId) {
 
 // click empty space clears selection + disarms activePort
 viewport.addEventListener("pointerdown", (e) => {
-    // if click on node/port, ignore
     if (e.target.closest && (e.target.closest(".node") || e.target.closest(".port"))) return;
-    // if click on edge hit/dot, ignore
     if (e.target instanceof SVGElement && (e.target.classList.contains("edge-hit") || e.target.classList.contains("edge-dot"))) return;
 
     selectedNodeId = null;
@@ -637,7 +703,6 @@ function makeDraggable(el, handle, node) {
 let lastPan = null;
 
 viewport.addEventListener("pointerdown", (e) => {
-    // start pan only on empty background (not node/port/edge dot)
     if (e.target.closest && e.target.closest(".node")) return;
     if (e.target instanceof SVGElement && (e.target.classList.contains("edge-hit") || e.target.classList.contains("edge-dot"))) return;
     lastPan = { x: e.clientX, y: e.clientY };
@@ -667,7 +732,7 @@ function applyTransform() {
 }
 
 // -----------------------------------------------------
-// Pinch zoom (iPad / touchscreen) — does NOT change other behavior
+// Pinch zoom (iPad / touchscreen) â€” does NOT change other behavior
 // -----------------------------------------------------
 let pinch = null;
 // { id1, id2, startDist, startZoom, worldMid:{x,y} }
@@ -685,7 +750,6 @@ function mid(a, b) {
 }
 
 viewport.addEventListener("touchstart", (e) => {
-    // Don’t interfere with port drag in progress
     if (portGesture) return;
 
     if (e.touches.length === 2) {
@@ -696,7 +760,6 @@ viewport.addEventListener("touchstart", (e) => {
 
         const m = mid(t1, t2);
 
-        // World point currently under the pinch midpoint (keep it anchored)
         const worldMid = {
             x: (m.x - pan.x) / zoom,
             y: (m.y - pan.y) / zoom
@@ -727,7 +790,6 @@ viewport.addEventListener("touchmove", (e) => {
     const scale = d / Math.max(1, pinch.startDist);
     zoom = clamp(pinch.startZoom * scale, 0.3, 2.0);
 
-    // Adjust pan so the same world point stays under the midpoint
     pan.x = m.x - pinch.worldMid.x * zoom;
     pan.y = m.y - pinch.worldMid.y * zoom;
 
@@ -736,11 +798,7 @@ viewport.addEventListener("touchmove", (e) => {
 
 viewport.addEventListener("touchend", (e) => {
     if (!pinch) return;
-
-    // If fingers lifted or gesture broken, stop pinch mode
-    if (e.touches.length < 2) {
-        pinch = null;
-    }
+    if (e.touches.length < 2) pinch = null;
 }, { passive: false });
 
 viewport.addEventListener("touchcancel", () => {
@@ -756,8 +814,25 @@ function loadGraph(data) {
     canvas.innerHTML = "";
     nextId = 1;
 
+    // graph-level optional fields
+    startNodeId = (typeof data.startNodeId === "number") ? data.startNodeId : -1;
+    globalEgo = data.globalEgo || "None";
+
     // nodes
     (data.nodes || []).forEach(n => {
+        // Ensure dialogue nodes have new fields (back-compat)
+        if (n.type === "dialogue") {
+            n.data = n.data || {};
+            if (typeof n.data.stableText !== "string") n.data.stableText = "";
+            if (typeof n.data.fragmentedText !== "string") n.data.fragmentedText = "";
+            if (typeof n.data.ghostlyText !== "string") n.data.ghostlyText = "";
+            if (typeof n.data.stableEnd !== "boolean") n.data.stableEnd = false;
+            if (typeof n.data.fragmentedEnd !== "boolean") n.data.fragmentedEnd = false;
+            if (typeof n.data.ghostlyEnd !== "boolean") n.data.ghostlyEnd = false;
+            if (typeof n.data.text !== "string") n.data.text = "";
+            if (typeof n.data.speaker !== "string") n.data.speaker = "NPC";
+        }
+
         nodes.push(n);
         nextId = Math.max(nextId, n.id + 1);
         renderNode(n);

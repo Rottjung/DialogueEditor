@@ -95,7 +95,17 @@ html, body {
         min-height: 64px;
         resize: vertical;
     }
+.variant-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+}
 
+.variant-block textarea {
+    width: 100%;
+    min-height: 60px;
+}
 /* Selected node outline */
 .selected-node {
     outline: 2px solid #4da3ff;
