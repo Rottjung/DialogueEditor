@@ -12,13 +12,27 @@
         <button onclick="createNode('dialogue')">Dialogue</button>
         <button onclick="createNode('key')">Key</button>
         <button onclick="createNode('ego')">Ego</button>
+        <button onclick="createNode('condition')">Condition</button>
+        <button onclick="createNode('outcome')">Outcome</button>
+
         <button onclick="deleteSelected()">Delete Selected</button>
 
         <span class="spacer"></span>
 
+        <!-- Optional helper: a place to paste known IDs for copy/paste -->
+        <button id="toggleIdsBtn" type="button">IDs</button>
+
         <button onclick="exportJSON()">Export</button>
         <input type="file" id="importFile" accept=".json" hidden />
         <button onclick="document.getElementById('importFile').click()">Import</button>
+    </div>
+
+    <!-- Optional IDs panel (pure HTML; app.js can show/hide it via #toggleIdsBtn) -->
+    <div id="idsPanel" style="display:none; padding:8px; border-bottom:1px solid rgba(255,255,255,0.08);">
+        <div style="font-size:12px; opacity:0.85; margin-bottom:6px;">
+            Paste/copy Interactable IDs here (one per line). Use these strings inside Condition/Outcome nodes.
+        </div>
+        <textarea id="idsTextArea" rows="3" style="width:100%; resize:vertical;" placeholder="e.g. KNOL_ACT&#10;QUEEN_SEAL&#10;LETTER_01"></textarea>
     </div>
 
     <div id="viewport">
@@ -27,5 +41,17 @@
     </div>
 
     <script src="app.js"></script>
+
+    <!-- Optional tiny inline toggle (keeps html self-contained; remove if you prefer it in app.js) -->
+    <script>
+        (function () {
+            const btn = document.getElementById("toggleIdsBtn");
+            const panel = document.getElementById("idsPanel");
+            if (!btn || !panel) return;
+            btn.addEventListener("click", () => {
+                panel.style.display = (panel.style.display === "none") ? "block" : "none";
+            });
+        })();
+    </script>
 </body>
 </html>

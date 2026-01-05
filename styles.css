@@ -1,4 +1,4 @@
-* {
+﻿* {
     box-sizing: border-box;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
@@ -39,20 +39,28 @@ html, body {
     touch-action: none;
 }
 
-/* SVG edges layer */
+/* Paths SVG (never clickable) */
 #edges {
     position: absolute;
     inset: 0;
-    pointer-events: none; /* we need the edge midpoint dots to receive input */
-    z-index: 50;
+    pointer-events: none; /* ✅ keep */
+    z-index: 10;
 }
 
-/* Node canvas (panned/zoomed) */
+/* Dots SVG (clickable) — MUST be BELOW nodes */
+#edgeHandles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none; /* ✅ don't block node clicks */
+    z-index: 60; /* ✅ above #canvas so circles can receive events */
+}
+
+/* Node canvas (panned/zoomed) — MUST be on top */
 #canvas {
     position: absolute;
     inset: 0;
     transform-origin: 0 0;
-    z-index: 10;
+    z-index: 30; /* ✅ above edgeHandles so nodes get clicks */
 }
 
 /* Nodes */
@@ -95,6 +103,8 @@ html, body {
         min-height: 64px;
         resize: vertical;
     }
+
+/* Dialogue variant blocks */
 .variant-header {
     display: flex;
     justify-content: space-between;
@@ -106,6 +116,7 @@ html, body {
     width: 100%;
     min-height: 60px;
 }
+
 /* Selected node outline */
 .selected-node {
     outline: 2px solid #4da3ff;
@@ -122,7 +133,7 @@ html, body {
     border: 2px solid #000;
     position: absolute;
     cursor: pointer;
-    z-index: 5;
+    z-index: 50; /* inside node */
 }
 
     .port.in {
@@ -153,13 +164,21 @@ html, body {
         background: #eb4d4b;
     }
 
+    .port.cond-false {
+        background: #ff5c5c !important;
+    }
+
+    .port.cond-true {
+        background: #55ff8a !important;
+    }
+
 /* Active/armed port */
 .port-armed {
     outline: 2px solid #ffffff;
     outline-offset: 2px;
 }
 
-/* Edge path (simple + clean) */
+/* Edge path */
 .connection {
     fill: none;
     stroke: #aaa;
@@ -167,21 +186,19 @@ html, body {
     pointer-events: none;
 }
 
-/* Selected edge path */
 .selected-edge {
     stroke: #4da3ff !important;
     stroke-width: 3 !important;
 }
 
-/* Temp dotted connection while dragging */
 .temp-connection {
     stroke-dasharray: 6 6;
     opacity: 0.85;
 }
 
-/* Edge selection via midpoint dot */
+/* Edge selection via midpoint dot (in #edgeHandles) */
 .edge-hit {
-    fill: rgba(0,0,0,0); /* invisible hit area */
+    fill: rgba(0,0,0,0);
     stroke: rgba(0,0,0,0);
     cursor: pointer;
     pointer-events: all;
@@ -199,12 +216,226 @@ html, body {
         fill: #ffffff;
     }
 
-.connection.selected {
-    stroke: #4da3ff !important;
-    stroke-width: 3 !important;
+    .edge-dot.selected {
+        fill: #4da3ff !important;
+    }
+
+/* ID list editor */
+.idlist {
+    margin-top: 10px;
+    padding: 8px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    background: rgba(0,0,0,0.12);
 }
 
-/* If JS does: circle.classList.add("selected") */
-.edge-dot.selected {
-    fill: #4da3ff !important;
+.idlist-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
 }
+
+.idlist-left {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.idlist-title {
+    font-weight: 700;
+    font-size: 13px;
+}
+
+.idlist-count {
+    font-size: 12px;
+    opacity: 0.75;
+}
+
+.idlist-rows {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.idrow {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+    .idrow input[type="text"] {
+        flex: 1;
+        margin-top: 0;
+    }
+
+.mini-btn {
+    padding: 6px 8px;
+    font-size: 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(255,255,255,0.08);
+    color: white;
+}
+
+    .mini-btn:hover {
+        background: rgba(255,255,255,0.14);
+    }
+
+    .mini-btn.danger {
+        border-color: rgba(255,80,80,0.35);
+        background: rgba(255,80,80,0.12);
+    }
+
+        .mini-btn.danger:hover {
+            background: rgba(255,80,80,0.18);
+        }
+
+.checkrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+    user-select: none;
+}
+
+    .checkrow input[type="checkbox"] {
+        width: auto;
+        margin-top: 0;
+    }
+
+/* Outcome layout */
+.node.outcome {
+    min-width: 320px;
+}
+
+.outcome-wrap {
+    margin-top: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.outcome-flags {
+    padding: 8px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    background: rgba(0,0,0,0.10);
+}
+
+.outcome-flags-title {
+    font-weight: 700;
+    font-size: 13px;
+    margin-bottom: 4px;
+    opacity: 0.95;
+}
+
+
+/* Outcome (new RewardData list) */
+.outcome-summary {
+    padding: 8px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    background: rgba(0,0,0,0.10);
+    font-size: 12px;
+    opacity: 0.95;
+}
+
+/* Unity-style tints for outcome node */
+.node.outcome.outcome-empty {
+    background: rgba(46,46,46,1);
+}
+
+.node.outcome.outcome-all-success {
+    background: rgba(36,56,36,1);
+}
+
+.node.outcome.outcome-all-fail {
+    background: rgba(56,36,36,1);
+}
+
+.node.outcome.outcome-mixed {
+    background: rgba(56,52,36,1);
+}
+
+/* Reward list editor (like idlist, but with per-ego toggles per row) */
+.rewardlist {
+    margin-top: 10px;
+    padding: 8px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    background: rgba(0,0,0,0.12);
+}
+
+.rewardlist-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.rewardlist-left {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.rewardlist-title {
+    font-weight: 700;
+    font-size: 13px;
+}
+
+.rewardlist-count {
+    font-size: 12px;
+    opacity: 0.75;
+}
+
+.rewardlist-rows {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.reward-row {
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(0,0,0,0.18);
+}
+
+    .reward-row:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+.reward-top {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+    .reward-top input[type="text"] {
+        flex: 1;
+        margin-top: 0;
+    }
+
+.reward-toggles {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-top: 6px;
+    user-select: none;
+}
+
+.reward-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    opacity: 0.95;
+}
+
+    .reward-toggle input[type="checkbox"] {
+        width: auto;
+        margin: 0;
+    }

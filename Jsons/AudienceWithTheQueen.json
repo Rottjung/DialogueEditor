@@ -1,0 +1,2213 @@
+{
+  "version": 1,
+  "startNodeId": -1,
+  "globalEgo": "None",
+  "nodes": [
+    {
+      "id": 2,
+      "type": "key",
+      "x": -1789.1949333880661,
+      "y": 149.43159471488434,
+      "w": 212.800048828125,
+      "h": 219.99993896484375,
+      "data": {
+        "speaker": "",
+        "text": "",
+        "stableText": "",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "None",
+        "gender": "Male",
+        "ideology": "Traditional",
+        "purpose": "Warrior",
+        "label": "Key",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 44,
+      "type": "condition",
+      "x": -1385.41622243834,
+      "y": 161.8682115088123,
+      "w": 382.39984130859375,
+      "h": 163.9998779296875,
+      "data": {
+        "speaker": "",
+        "text": "",
+        "stableText": "",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": [
+          "d06db4af33a940cdb753e4bd044518f7"
+        ]
+      }
+    },
+    {
+      "id": 45,
+      "type": "dialogue",
+      "x": -600,
+      "y": -240,
+      "w": 260,
+      "h": 430,
+      "data": {
+        "speaker": "NPC",
+        "text": "",
+        "stableText": "Not yet, Orlando.",
+        "fragmentedText": "Not yet—no. Not without it.",
+        "ghostlyText": "Not yet. Come back with the proof, not just the wanting.",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 46,
+      "type": "dialogue",
+      "x": -260,
+      "y": -240,
+      "w": 520,
+      "h": 430,
+      "data": {
+        "speaker": "NPC",
+        "text": "",
+        "stableText": "The parchment—The Knole Property Act. The deed that lets me name an heir to Knole House. Without it, it’s only talk.",
+        "fragmentedText": "The parchment. The Knole Act—the deed. Without it I can’t name you. Bring it.",
+        "ghostlyText": "The parchment that makes a house obey. Knole won’t open its doors to your name without my seal. Bring it.",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 107,
+      "type": "dialogue",
+      "x": 283.54302978515625,
+      "y": -235.56565856933594,
+      "w": 339.9998779296875,
+      "h": 430,
+      "data": {
+        "speaker": "NPC",
+        "text": "",
+        "stableText": "Go—find it. Then return, and we’ll speak like adults: whether I keep you close… or send you away empty-handed.",
+        "fragmentedText": "Go. Find it. Then come back. Then I decide. Not before.",
+        "ghostlyText": "Go. Fetch it. Then we can decide if you become family… or a footnote.",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 100,
+      "type": "dialogue",
+      "x": -1024.4764193042408,
+      "y": 237.669174246257,
+      "w": 640,
+      "h": 430,
+      "data": {
+        "speaker": "NPC",
+        "text": "",
+        "stableText": "There you are.",
+        "fragmentedText": "There. The paper—good.",
+        "ghostlyText": "You brought the paper.",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 101,
+      "type": "dialogue",
+      "x": 354.2699113096356,
+      "y": 271.9860595275129,
+      "w": 600,
+      "h": 430,
+      "data": {
+        "speaker": "NPC",
+        "text": "",
+        "stableText": "So tell me—why should I put my name beside yours? What do you think Knole is for, Orlando: a home, a symbol, or a weapon?",
+        "fragmentedText": "Tell me. One reason. What is Knole for? Home? Symbol? Weapon?",
+        "ghostlyText": "Tell me what Knole is to you. A house? A chain? A knife? Choose.",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 110,
+      "type": "key",
+      "x": 749.8946533203125,
+      "y": 278.9896240234375,
+      "w": 185.5999755859375,
+      "h": 219.99993896484375,
+      "data": {
+        "speaker": "",
+        "text": "",
+        "stableText": "",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "None",
+        "gender": "None",
+        "ideology": "None",
+        "purpose": "None",
+        "label": "Key",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 111,
+      "type": "dialogue",
+      "x": 1180,
+      "y": 40,
+      "w": 560,
+      "h": 430,
+      "data": {
+        "speaker": "Player",
+        "text": "",
+        "stableText": "A stage, Majesty—where every lord learns that your favour is the only daylight worth standing in.",
+        "fragmentedText": "A stage. Your daylight. They stand in it. They learn.",
+        "ghostlyText": "A stage. Everyone watches. Everyone bows. Everyone forgets why.",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 112,
+      "type": "dialogue",
+      "x": 1143.4527587890625,
+      "y": 520,
+      "w": 598.4000244140625,
+      "h": 430,
+      "data": {
+        "speaker": "Player",
+        "text": "",
+        "stableText": "A closeness you can measure. If you keep me near, give me something with weight—so the court believes it.",
+        "fragmentedText": "Near you. Something with weight. So they believe it. So I believe it.",
+        "ghostlyText": "A distance with a ribbon on it. Tie it around my wrist and call it Knole.",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 113,
+      "type": "dialogue",
+      "x": 1180,
+      "y": 1000,
+      "w": 560,
+      "h": 430,
+      "data": {
+        "speaker": "Player",
+        "text": "",
+        "stableText": "A mechanism. Land fixes names; names fix laws. If Knole is settled, the realm reads itself clearly.",
+        "fragmentedText": "Mechanism. Names. Laws. Keep it readable. Don't let it smear.",
+        "ghostlyText": "A book that insists it's stone. If you want the book to behave, give it margins.",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 114,
+      "type": "dialogue",
+      "x": 1180,
+      "y": 1480,
+      "w": 560,
+      "h": 430,
+      "data": {
+        "speaker": "Player",
+        "text": "",
+        "stableText": "A post. A gate. Put me there and the first blow lands on my shield, not on your door.",
+        "fragmentedText": "A post. A gate. First blow on me. On me.",
+        "ghostlyText": "A place to stand while the world moves through you. Give me a place.",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 121,
+      "type": "dialogue",
+      "x": 1780,
+      "y": 40,
+      "w": 560,
+      "h": 430,
+      "data": {
+        "speaker": "NPC",
+        "text": "",
+        "stableText": "A stage? You'd turn my house into theatre. I like theatre—when I wrote the play. Go on.",
+        "fragmentedText": "Theatre. Fine. Don't fidget. Go on.",
+        "ghostlyText": "Theatre suits you. It's the only place a mask isn't suspicious. Go on.",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 122,
+      "type": "dialogue",
+      "x": 1780,
+      "y": 520,
+      "w": 560,
+      "h": 430,
+      "data": {
+        "speaker": "NPC",
+        "text": "",
+        "stableText": "Closeness is not a gift. It's a leash. Tell me why I shouldn't snap it and be done.",
+        "fragmentedText": "Careful. You're reaching. Give me a reason I don't regret.",
+        "ghostlyText": "You're asking for a leash and calling it love. Dangerous. Continue—quickly.",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 123,
+      "type": "dialogue",
+      "x": 1780,
+      "y": 1000,
+      "w": 560,
+      "h": 430,
+      "data": {
+        "speaker": "NPC",
+        "text": "",
+        "stableText": "You speak as if England were a ledger. It is, sometimes. Prove you can keep the ink from blotting.",
+        "fragmentedText": "Ledger talk. Keep it clean. Next.",
+        "ghostlyText": "Ink, blot, law—yes. Continue. Before I lose interest.",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 124,
+      "type": "dialogue",
+      "x": 1780,
+      "y": 1480,
+      "w": 560,
+      "h": 430,
+      "data": {
+        "speaker": "NPC",
+        "text": "",
+        "stableText": "At last—plain usefulness. Now, usefulness needs a price. What do you pay me with?",
+        "fragmentedText": "Useful. Good. Price. Answer.",
+        "ghostlyText": "A soldier's word: post, gate, blow. Fine. Now pay.",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 130,
+      "type": "key",
+      "x": 2443.999755859375,
+      "y": 825.1427612304688,
+      "w": 185.600341796875,
+      "h": 219.99993896484375,
+      "data": {
+        "speaker": "",
+        "text": "",
+        "stableText": "",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "None",
+        "gender": "None",
+        "ideology": "None",
+        "purpose": "None",
+        "label": "Key",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 131,
+      "type": "dialogue",
+      "x": 2760,
+      "y": 40,
+      "w": 560,
+      "h": 430,
+      "data": {
+        "speaker": "Player",
+        "text": "",
+        "stableText": "I pay in reputation. Knole under my care will broadcast your strength and shame your doubters.",
+        "fragmentedText": "Reputation. Broadcast strength. Shame doubters.",
+        "ghostlyText": "I pay in applause. It costs nothing and buys everything, for a minute.",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 132,
+      "type": "dialogue",
+      "x": 2760,
+      "y": 520,
+      "w": 560,
+      "h": 430,
+      "data": {
+        "speaker": "Player",
+        "text": "",
+        "stableText": "I pay in devotion—visible. Let them see you choose me, and they will fear to call it mistake.",
+        "fragmentedText": "Devotion. Visible. They see. They fear.",
+        "ghostlyText": "I pay in being looked at. The court loves a spectacle; you can aim it.",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 133,
+      "type": "dialogue",
+      "x": 2760,
+      "y": 1000,
+      "w": 560,
+      "h": 430,
+      "data": {
+        "speaker": "Player",
+        "text": "",
+        "stableText": "I pay in clarity. No shadow-claims, no clever cousins. Knole stays legible, and so does your will.",
+        "fragmentedText": "Clarity. No shadows. No cousins. Legible.",
+        "ghostlyText": "I pay in clean margins. Let the scribbles live somewhere else.",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 134,
+      "type": "dialogue",
+      "x": 2760,
+      "y": 1480,
+      "w": 560,
+      "h": 430,
+      "data": {
+        "speaker": "Player",
+        "text": "",
+        "stableText": "I pay in risk. Test the claim and you hit me first—blade, coin, consequence.",
+        "fragmentedText": "Risk. First hit me. Me.",
+        "ghostlyText": "I pay in wounds I haven't earned yet. It's a strange currency.",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 141,
+      "type": "dialogue",
+      "x": 3360,
+      "y": 40,
+      "w": 560,
+      "h": 430,
+      "data": {
+        "speaker": "NPC",
+        "text": "",
+        "stableText": "Good. You understand the court is a mouth. Feed it the right story and it will bite for me.",
+        "fragmentedText": "Better. Story. Bite. Next.",
+        "ghostlyText": "Ah. You'd weaponize gossip. Delicious. Continue.",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 142,
+      "type": "dialogue",
+      "x": 3360,
+      "y": 520,
+      "w": 560,
+      "h": 430,
+      "data": {
+        "speaker": "NPC",
+        "text": "",
+        "stableText": "Devotion is a perfume—pleasant, and gone by supper. Give me something I can keep.",
+        "fragmentedText": "Perfume. Gone. Give me something solid or stop.",
+        "ghostlyText": "Perfume. Smoke. Fine—you're amusing. One more answer.",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 143,
+      "type": "dialogue",
+      "x": 3360,
+      "y": 1000,
+      "w": 560,
+      "h": 430,
+      "data": {
+        "speaker": "NPC",
+        "text": "",
+        "stableText": "Clarity can be a knife. Make one wrong cut and you bleed titles for a decade. Are you steady enough?",
+        "fragmentedText": "Knife talk. If you tremble, we're done.",
+        "ghostlyText": "A knife of law. Careful. If you drift again, I end this.",
+        "stableEnd": false,
+        "fragmentedEnd": true,
+        "ghostlyEnd": true,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 144,
+      "type": "dialogue",
+      "x": 3360,
+      "y": 1480,
+      "w": 560,
+      "h": 430,
+      "data": {
+        "speaker": "NPC",
+        "text": "",
+        "stableText": "Risk I understand. But I don't reward a shield unless it also knows when to smile. Last question.",
+        "fragmentedText": "Risk. Fine. Last question. Don't fall apart.",
+        "ghostlyText": "Risk is honest. Good. Last question—before you vanish.",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 510,
+      "type": "outcome",
+      "x": 4202.39990234375,
+      "y": 1121.60009765625,
+      "w": 368.80029296875,
+      "h": 277.599853515625,
+      "data": {
+        "speaker": "",
+        "text": "",
+        "stableText": "",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [
+          {
+            "rewardId": "d06db4af33a940cdb753e4bd044518f7",
+            "stableSuccess": false,
+            "fragmentedSuccess": false,
+            "ghostlySuccess": false
+          },
+          {
+            "rewardId": "52661443b2cc432cb06b08d9144197d8",
+            "stableSuccess": false,
+            "fragmentedSuccess": false,
+            "ghostlySuccess": false
+          },
+          {
+            "rewardId": "5891a14579034d31ab5e9cdab77ec3c7",
+            "stableSuccess": false,
+            "fragmentedSuccess": false,
+            "ghostlySuccess": false
+          }
+        ],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 150,
+      "type": "key",
+      "x": 4294.7421875,
+      "y": 673.2569580078125,
+      "w": 185.60009765625,
+      "h": 220,
+      "data": {
+        "speaker": "",
+        "text": "",
+        "stableText": "",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "None",
+        "gender": "None",
+        "ideology": "None",
+        "purpose": "None",
+        "label": "Key",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 171,
+      "type": "dialogue",
+      "x": 5180,
+      "y": 40,
+      "w": 560,
+      "h": 430,
+      "data": {
+        "speaker": "Player",
+        "text": "",
+        "stableText": "Then see a courtier. I can carry a title without spilling it. Let Knole make your court look inevitable.",
+        "fragmentedText": "See—courtier. Title. Don't spill. Inevitable.",
+        "ghostlyText": "See a coat learning how to stand up. Hang Knole on it and the room believes.",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 172,
+      "type": "dialogue",
+      "x": 5180,
+      "y": 520,
+      "w": 560,
+      "h": 430,
+      "data": {
+        "speaker": "Player",
+        "text": "",
+        "stableText": "Then see a lover who can still serve. Your gaze steadies me. Let Knole be the proof I belong near you.",
+        "fragmentedText": "Your gaze steadies me. Proof. Near you.",
+        "ghostlyText": "Your gaze pins me to the world. Without it I drift. Give me Knole as a nail.",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 173,
+      "type": "dialogue",
+      "x": 5180,
+      "y": 1000,
+      "w": 560,
+      "h": 430,
+      "data": {
+        "speaker": "Player",
+        "text": "",
+        "stableText": "Then see the argument. A clean title is power. Set my name beside Knole and the realm reads as one line.",
+        "fragmentedText": "Argument. Clean title. One line.",
+        "ghostlyText": "Power is just fear arranged neatly. Arrange me.",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 174,
+      "type": "dialogue",
+      "x": 5180,
+      "y": 1480,
+      "w": 560,
+      "h": 430,
+      "data": {
+        "speaker": "Player",
+        "text": "",
+        "stableText": "Then see a soldier. Reward competence. Give Knole, and I'll hold it as a forward post for you.",
+        "fragmentedText": "Soldier. Competence. Forward post.",
+        "ghostlyText": "Decide like a blade: quick, clean. I can be the handle.",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 181,
+      "type": "dialogue",
+      "x": 5928.5703125,
+      "y": 76.57146453857422,
+      "w": 224,
+      "h": 430,
+      "data": {
+        "speaker": "NPC",
+        "text": "",
+        "stableText": "You'd make Knole a mirror for my reign. Very well—mirrors are useful.\nBut a mirror is not a house. Knole stays with the Crown.\nStill… take this emerald ring. It will remind you where power sits.",
+        "fragmentedText": "No Knole. Too much shine, not enough ground. Take the ring. Don't push.",
+        "ghostlyText": "No house. But a green circle is easy to carry. Take it.",
+        "stableEnd": true,
+        "fragmentedEnd": true,
+        "ghostlyEnd": true,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 182,
+      "type": "dialogue",
+      "x": 5928.6845703125,
+      "y": 542.6284790039062,
+      "w": 223.2001953125,
+      "h": 430,
+      "data": {
+        "speaker": "NPC",
+        "text": "",
+        "stableText": "You're bold—almost reckless. Knole is not a prize for flirting.\nBut you have a kind of heat the court likes to gossip about.\nWear my garter. Let them whisper in the direction I prefer.",
+        "fragmentedText": "No Knole. You're… a spectacle. Take the garter. Don't embarrass me.",
+        "ghostlyText": "No house. But I'll give you a sign. Let the whispers be mine.",
+        "stableEnd": true,
+        "fragmentedEnd": true,
+        "ghostlyEnd": true,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 183,
+      "type": "dialogue",
+      "x": 5935.427734375,
+      "y": 1018.28564453125,
+      "w": 224,
+      "h": 430,
+      "data": {
+        "speaker": "NPC",
+        "text": "",
+        "stableText": "That is the voice I wanted—clear, not greedy.\nVery well. Knole is yours—by my favour. Keep it worthy, Orlando. And keep it quiet.",
+        "fragmentedText": "No. You're not steady enough for land. Out.",
+        "ghostlyText": "You're not here enough to hold a house. Out.",
+        "stableEnd": true,
+        "fragmentedEnd": true,
+        "ghostlyEnd": true,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 184,
+      "type": "dialogue",
+      "x": 5780,
+      "y": 1480,
+      "w": 700,
+      "h": 430,
+      "data": {
+        "speaker": "NPC",
+        "text": "",
+        "stableText": "Service, yes. But service alone is common.\nStill—you've earned something, and I enjoy rewarding competence.\nTake the ring for power… and the garter for passion.\nNow—about Knole…",
+        "fragmentedText": "You're useful. Fine. Take the ring. Take the garter. Don't speak.",
+        "ghostlyText": "You want a post, not a home. Take these tokens. As for Knole…",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 190,
+      "type": "key",
+      "x": 6306.66650390625,
+      "y": 1598.6666259765625,
+      "w": 190,
+      "h": 220,
+      "data": {
+        "speaker": "",
+        "text": "",
+        "stableText": "",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "None",
+        "gender": "None",
+        "ideology": "None",
+        "purpose": "None",
+        "label": "Key",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 191,
+      "type": "dialogue",
+      "x": 6920.3837890625,
+      "y": 1312.709228515625,
+      "w": 314.39990234375,
+      "h": 377.5999755859375,
+      "data": {
+        "speaker": "Player",
+        "text": "",
+        "stableText": "All of it, Majesty. I hold nothing above your will.",
+        "fragmentedText": "All of it. Your will. Nothing above.",
+        "ghostlyText": "Your will is the only solid thing in this room. I cling to it.",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 192,
+      "type": "dialogue",
+      "x": 6948,
+      "y": 1738.6668701171875,
+      "w": 720,
+      "h": 430,
+      "data": {
+        "speaker": "Player",
+        "text": "",
+        "stableText": "Then keep Knole. I won't pretend to deserve a house when I'm asking for a battlefield.",
+        "fragmentedText": "Keep it. I asked wrong. Keep it.",
+        "ghostlyText": "Keep the house. I was only ever passing through.",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 193,
+      "type": "dialogue",
+      "x": 7560,
+      "y": 1240,
+      "w": 760,
+      "h": 430,
+      "data": {
+        "speaker": "NPC",
+        "text": "",
+        "stableText": "Good.\nI like a subject who knows when to kneel and when to stand.\nI seal Knole to you.\nAnd since you're greedy for symbols—take the emerald ring and the garter too. Wear them wisely.",
+        "fragmentedText": "Fine. Knole. Ring. Garter. Go—before I rethink it.",
+        "ghostlyText": "Knole, then. And the tokens. Try to stay present enough to keep them.",
+        "stableEnd": true,
+        "fragmentedEnd": true,
+        "ghostlyEnd": true,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 194,
+      "type": "dialogue",
+      "x": 7560,
+      "y": 1720,
+      "w": 760,
+      "h": 430,
+      "data": {
+        "speaker": "NPC",
+        "text": "",
+        "stableText": "No.\nYou want a costume and a charge, not a home.\nTake what I already gave you—and leave Knole to me.",
+        "fragmentedText": "No. Take the tokens. Leave.",
+        "ghostlyText": "No. Leave.",
+        "stableEnd": true,
+        "fragmentedEnd": true,
+        "ghostlyEnd": true,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 601,
+      "type": "outcome",
+      "x": 6497.3916015625,
+      "y": -58.88410949707031,
+      "w": 376,
+      "h": 225.5999755859375,
+      "data": {
+        "speaker": "",
+        "text": "",
+        "stableText": "",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [
+          {
+            "rewardId": "52661443b2cc432cb06b08d9144197d8",
+            "stableSuccess": true,
+            "fragmentedSuccess": false,
+            "ghostlySuccess": false
+          },
+          {
+            "rewardId": "d06db4af33a940cdb753e4bd044518f7",
+            "stableSuccess": false,
+            "fragmentedSuccess": false,
+            "ghostlySuccess": false
+          },
+          {
+            "rewardId": "5891a14579034d31ab5e9cdab77ec3c7",
+            "stableSuccess": false,
+            "fragmentedSuccess": false,
+            "ghostlySuccess": false
+          }
+        ],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 602,
+      "type": "outcome",
+      "x": 6500,
+      "y": 560,
+      "w": 360,
+      "h": 170,
+      "data": {
+        "speaker": "",
+        "text": "",
+        "stableText": "",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [
+          {
+            "rewardId": "5891a14579034d31ab5e9cdab77ec3c7",
+            "stableSuccess": true,
+            "fragmentedSuccess": false,
+            "ghostlySuccess": false
+          },
+          {
+            "rewardId": "52661443b2cc432cb06b08d9144197d8",
+            "stableSuccess": false,
+            "fragmentedSuccess": false,
+            "ghostlySuccess": false
+          },
+          {
+            "rewardId": "d06db4af33a940cdb753e4bd044518f7",
+            "stableSuccess": false,
+            "fragmentedSuccess": false,
+            "ghostlySuccess": false
+          }
+        ],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 603,
+      "type": "outcome",
+      "x": 6494.52734375,
+      "y": 927.5037841796875,
+      "w": 474.39990234375,
+      "h": 216.8001708984375,
+      "data": {
+        "speaker": "",
+        "text": "",
+        "stableText": "",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [
+          {
+            "rewardId": "d06db4af33a940cdb753e4bd044518f7",
+            "stableSuccess": true,
+            "fragmentedSuccess": false,
+            "ghostlySuccess": false
+          },
+          {
+            "rewardId": "52661443b2cc432cb06b08d9144197d8",
+            "stableSuccess": false,
+            "fragmentedSuccess": false,
+            "ghostlySuccess": false
+          },
+          {
+            "rewardId": "5891a14579034d31ab5e9cdab77ec3c7",
+            "stableSuccess": false,
+            "fragmentedSuccess": false,
+            "ghostlySuccess": false
+          }
+        ],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 604,
+      "type": "outcome",
+      "x": 8420,
+      "y": 1320,
+      "w": 360,
+      "h": 170,
+      "data": {
+        "speaker": "",
+        "text": "",
+        "stableText": "",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [
+          {
+            "rewardId": "d06db4af33a940cdb753e4bd044518f7",
+            "stableSuccess": true,
+            "fragmentedSuccess": false,
+            "ghostlySuccess": false
+          },
+          {
+            "rewardId": "52661443b2cc432cb06b08d9144197d8",
+            "stableSuccess": true,
+            "fragmentedSuccess": false,
+            "ghostlySuccess": false
+          },
+          {
+            "rewardId": "5891a14579034d31ab5e9cdab77ec3c7",
+            "stableSuccess": true,
+            "fragmentedSuccess": false,
+            "ghostlySuccess": false
+          }
+        ],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 605,
+      "type": "outcome",
+      "x": 8420,
+      "y": 1800,
+      "w": 360,
+      "h": 170,
+      "data": {
+        "speaker": "",
+        "text": "",
+        "stableText": "",
+        "fragmentedText": "",
+        "ghostlyText": "",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "social": "",
+        "gender": "",
+        "ideology": "",
+        "purpose": "",
+        "label": "",
+        "ego": "",
+        "outcomeRewards": [
+          {
+            "rewardId": "52661443b2cc432cb06b08d9144197d8",
+            "stableSuccess": true,
+            "fragmentedSuccess": false,
+            "ghostlySuccess": false
+          },
+          {
+            "rewardId": "5891a14579034d31ab5e9cdab77ec3c7",
+            "stableSuccess": true,
+            "fragmentedSuccess": false,
+            "ghostlySuccess": false
+          },
+          {
+            "rewardId": "d06db4af33a940cdb753e4bd044518f7",
+            "stableSuccess": false,
+            "fragmentedSuccess": false,
+            "ghostlySuccess": false
+          }
+        ],
+        "conditionTargetIds": []
+      }
+    },
+    {
+      "id": 606,
+      "type": "dialogue",
+      "x": -679.2285197554318,
+      "y": 251.57252499658975,
+      "data": {
+        "speaker": "NPC",
+        "stableText": "That paper decides who owns Knole — the great estate you stand to inherit. ",
+        "fragmentedText": "That paper decides who owns Knole — the great estate you stand to inherit. ",
+        "ghostlyText": "That paper decides who owns Knole — the great estate you stand to inherit. ",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "text": ""
+      }
+    },
+    {
+      "id": 608,
+      "type": "dialogue",
+      "x": -7.999074472228627,
+      "y": 273.0062371980239,
+      "data": {
+        "speaker": "NPC",
+        "stableText": "But before I turn ink into fate, I will look at you once more.",
+        "fragmentedText": "Stand still. Let me see what I’m about to create.",
+        "ghostlyText": "Come closer. Let me look at you—before I make you permanent.",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "text": ""
+      }
+    },
+    {
+      "id": 609,
+      "type": "dialogue",
+      "x": -348.47700993697845,
+      "y": 251.57891060058665,
+      "data": {
+        "speaker": "NPC",
+        "stableText": "With one press of my seal, Knole will remember your name… or forget it.",
+        "fragmentedText": "With one press of my seal, Knole will remember your name… or forget it.",
+        "ghostlyText": "With one press of my seal, Knole will remember your name… or forget it.",
+        "stableEnd": false,
+        "fragmentedEnd": false,
+        "ghostlyEnd": false,
+        "text": ""
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": {
+        "nodeId": 2,
+        "direction": "Output",
+        "kind": "Social",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 44,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "2:social:out:0->44:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 2,
+        "direction": "Output",
+        "kind": "Gender",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 44,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "2:gender:out:0->44:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 2,
+        "direction": "Output",
+        "kind": "Ideology",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 44,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "2:ideology:out:0->44:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 2,
+        "direction": "Output",
+        "kind": "Purpose",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 44,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "2:purpose:out:0->44:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 45,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 46,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "45:flow:out:0->46:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 46,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 107,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "46:flow:out:0->107:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 101,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 110,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "101:flow:out:0->110:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 110,
+        "direction": "Output",
+        "kind": "Social",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 111,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "110:social:out:0->111:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 110,
+        "direction": "Output",
+        "kind": "Gender",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 112,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "110:gender:out:0->112:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 110,
+        "direction": "Output",
+        "kind": "Ideology",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 113,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "110:ideology:out:0->113:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 110,
+        "direction": "Output",
+        "kind": "Purpose",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 114,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "110:purpose:out:0->114:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 111,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 121,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "111:flow:out:0->121:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 112,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 122,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "112:flow:out:0->122:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 113,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 123,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "113:flow:out:0->123:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 114,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 124,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "114:flow:out:0->124:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 121,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 130,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "121:flow:out:0->130:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 122,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 130,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "122:flow:out:0->130:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 123,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 130,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "123:flow:out:0->130:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 124,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 130,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "124:flow:out:0->130:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 130,
+        "direction": "Output",
+        "kind": "Social",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 131,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "130:social:out:0->131:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 130,
+        "direction": "Output",
+        "kind": "Gender",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 132,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "130:gender:out:0->132:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 130,
+        "direction": "Output",
+        "kind": "Ideology",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 133,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "130:ideology:out:0->133:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 130,
+        "direction": "Output",
+        "kind": "Purpose",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 134,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "130:purpose:out:0->134:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 131,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 141,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "131:flow:out:0->141:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 132,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 142,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "132:flow:out:0->142:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 133,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 143,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "133:flow:out:0->143:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 134,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 144,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "134:flow:out:0->144:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 143,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 510,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "143:flow:out:0->510:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 141,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 150,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "141:flow:out:0->150:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 142,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 150,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "142:flow:out:0->150:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 144,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 150,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "144:flow:out:0->150:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 143,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 150,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "143:flow:out:0->150:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 184,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 190,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "184:flow:out:0->190:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 190,
+        "direction": "Output",
+        "kind": "Social",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 191,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "190:social:out:0->191:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 190,
+        "direction": "Output",
+        "kind": "Purpose",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 191,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "190:purpose:out:0->191:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 190,
+        "direction": "Output",
+        "kind": "Gender",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 192,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "190:gender:out:0->192:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 190,
+        "direction": "Output",
+        "kind": "Ideology",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 192,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "190:ideology:out:0->192:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 191,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 193,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "191:flow:out:0->193:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 192,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 194,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "192:flow:out:0->194:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 171,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 181,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "171:flow:out:0->181:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 172,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 182,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "172:flow:out:0->182:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 173,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 183,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "173:flow:out:0->183:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 174,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 184,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "174:flow:out:0->184:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 181,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 601,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "181:flow:out:0->601:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 182,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 602,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "182:flow:out:0->602:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 183,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 603,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "183:flow:out:0->603:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 193,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 604,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "193:flow:out:0->604:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 194,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 605,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "194:flow:out:0->605:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 150,
+        "direction": "Output",
+        "kind": "Social",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 171,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "150:social:out:0->171:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 150,
+        "direction": "Output",
+        "kind": "Gender",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 172,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "150:gender:out:0->172:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 150,
+        "direction": "Output",
+        "kind": "Ideology",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 173,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "150:ideology:out:0->173:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 150,
+        "direction": "Output",
+        "kind": "Purpose",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 174,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "150:purpose:out:0->174:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 44,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 1
+      },
+      "to": {
+        "nodeId": 100,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "44:flow:out:1->100:flow:in:0"
+    },
+    {
+      "from": {
+        "nodeId": 44,
+        "direction": "Output",
+        "kind": "Flow",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 45,
+        "direction": "Input",
+        "kind": "Flow",
+        "index": 0
+      },
+      "id": "44:flow:out:0->45:flow:in:0"
+    },
+    {
+      "id": "100:flow:out:0->606:flow:in:0",
+      "from": {
+        "nodeId": 100,
+        "kind": "Flow",
+        "direction": "Output",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 606,
+        "kind": "Flow",
+        "direction": "Input",
+        "index": 0
+      }
+    },
+    {
+      "id": "608:flow:out:0->101:flow:in:0",
+      "from": {
+        "nodeId": 608,
+        "kind": "Flow",
+        "direction": "Output",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 101,
+        "kind": "Flow",
+        "direction": "Input",
+        "index": 0
+      }
+    },
+    {
+      "id": "606:flow:out:0->609:flow:in:0",
+      "from": {
+        "nodeId": 606,
+        "kind": "Flow",
+        "direction": "Output",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 609,
+        "kind": "Flow",
+        "direction": "Input",
+        "index": 0
+      }
+    },
+    {
+      "id": "609:flow:out:0->608:flow:in:0",
+      "from": {
+        "nodeId": 609,
+        "kind": "Flow",
+        "direction": "Output",
+        "index": 0
+      },
+      "to": {
+        "nodeId": 608,
+        "kind": "Flow",
+        "direction": "Input",
+        "index": 0
+      }
+    }
+  ]
+}
